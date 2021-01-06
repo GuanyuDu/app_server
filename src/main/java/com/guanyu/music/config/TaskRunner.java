@@ -24,5 +24,6 @@ public class TaskRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // do something
+        normalService.printHi();
     }
 }
