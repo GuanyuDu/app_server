@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 /**
  * fruit model
@@ -14,11 +14,14 @@ import java.math.BigInteger;
 @ToString
 public class Fruit {
 
+    private Integer id;
+
     private String name;
 
-    private Integer price;
+    private BigDecimal price;
 
-    public Fruit(String name, Integer price) {
+    public Fruit(Integer id, String name, BigDecimal price) {
+        this.id = id;
         this.name = name;
         this.price = price;
     }

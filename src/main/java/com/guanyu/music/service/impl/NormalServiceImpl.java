@@ -3,8 +3,11 @@ package com.guanyu.music.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.guanyu.music.controller.NormalController;
+import com.guanyu.music.mapper.FruitMapper;
 import com.guanyu.music.model.base.Fruit;
 import com.guanyu.music.service.NormalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -31,5 +34,11 @@ public class NormalServiceImpl implements NormalService {
 
         System.out.println("result: ");
 
+    }
+
+    @Override
+    public List<Fruit> getAllFruits() {
+
+        return null;
     }
 }
