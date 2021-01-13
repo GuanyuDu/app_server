@@ -1,8 +1,7 @@
-package com.guanyu.music.controller;
+package com.guanyu.app.controller;
 
-import com.guanyu.music.model.Result;
-import com.guanyu.music.model.base.Fruit;
-import com.guanyu.music.service.NormalService;
+import com.guanyu.app.model.base.Result;
+import com.guanyu.app.service.NormalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

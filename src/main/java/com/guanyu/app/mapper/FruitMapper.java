@@ -1,7 +1,8 @@
-package com.guanyu.music.mapper;
+package com.guanyu.app.mapper;
 
-import com.guanyu.music.model.base.Fruit;
-import org.apache.ibatis.annotations.Mapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.guanyu.app.model.base.Fruit;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -9,8 +10,7 @@ import java.util.List;
 /**
  * @author Guanyu
  */
-@Mapper
-public interface FruitMapper {
+public interface FruitMapper extends BaseMapper<Fruit> {
 
     /**
      * get fruit data by id
@@ -26,4 +26,12 @@ public interface FruitMapper {
      */
     @Select("select * from test_fruit")
     List<Fruit> getAllFruit();
+
+    /**
+     * insert fruit
+     * @param fruit object
+     * @return boolean
+     */
+    @Insert("insert into test_fruit value(#{id}, #{name}, #{price})")
+    boolean insertFruit(Fruit fruit);
 }

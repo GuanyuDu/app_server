@@ -1,4 +1,4 @@
-package com.guanyu.music;
+package com.guanyu.app;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author guanyu
  */
 @SpringBootApplication
-@MapperScan("com.guanyu.music.mapper")
 public class MiniApplication {
 
     public static void main(String[] args) {

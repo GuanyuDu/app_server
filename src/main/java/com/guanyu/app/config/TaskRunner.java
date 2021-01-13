@@ -1,12 +1,10 @@
-package com.guanyu.music.config;
+package com.guanyu.app.config;
 
-import com.guanyu.music.service.NormalService;
+import com.guanyu.app.service.NormalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-
-import java.util.Random;
 
 /**
  * @author v.duguanyu
