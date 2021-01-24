@@ -1,4 +1,4 @@
-package com.guanyu.music;
+package com.guanyu.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author guanyu
  */
 @SpringBootApplication
-public class MusicApplication {
+public class MiniApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MusicApplication.class, args);
+        SpringApplication.run(MiniApplication.class, args);
     }
 
 }

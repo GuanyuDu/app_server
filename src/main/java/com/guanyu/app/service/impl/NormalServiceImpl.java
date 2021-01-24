@@ -1,6 +1,6 @@
-package com.guanyu.music.service.impl;
+package com.guanyu.app.service.impl;
 
-import com.guanyu.music.service.NormalService;
+import com.guanyu.app.service.NormalService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,6 +11,6 @@ public class NormalServiceImpl implements NormalService {
 
     @Override
     public void printHi() {
-        System.out.println("Hi");
+
     }
 }

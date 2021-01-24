@@ -1,4 +1,4 @@
-package com.guanyu.music.model;
+package com.guanyu.app.model.base;
 
 import lombok.Getter;
 import lombok.Setter;
