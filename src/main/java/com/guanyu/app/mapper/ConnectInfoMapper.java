@@ -1,5 +1,6 @@
 package com.guanyu.app.mapper;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.guanyu.app.model.tool.ConnectInfo;
 import org.apache.ibatis.annotations.Select;
@@ -8,9 +9,10 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * @author Guanyu
+ * @author Guanyuweb_tools
  */
 @Component
+@DS("web_tools")
 public interface ConnectInfoMapper extends BaseMapper<ConnectInfo> {
 
     /**
@@ -19,7 +21,7 @@ public interface ConnectInfoMapper extends BaseMapper<ConnectInfo> {
      * @param env 环境标识：dev, uat, pro
      * @return 实例名称集合
      */
-    @Select("select database from connect_info where type = #{type} and env = #{env}")
+    @Select("select db_name from connect_info where type = #{type} and env = #{env}")
     List<String> getDatabaseByTypeAndEnv(Integer type, String env);
 
     /**

@@ -59,12 +59,12 @@ public class ConnectInfoServiceImpl implements ConnectInfoService {
             connectInfoDto.setUsername(connectInfo.getUsername());
             connectInfoDto.setPassword(connectInfo.getPassword());
             // set springboard machine
-            if (connectInfo.getType() == 1) {
-                ConnectInfo springboardMachine = connectInfoMapper.selectById(connectInfo.getSpringboardId());
-                if (springboardMachine != null) {
-                    connectInfoDto.setSpringboard(springboardMachine.getHost() + "-" + springboardMachine.getPassword());
-                }
-            }
+//            if (connectInfo.getType() == 1) {
+//                ConnectInfo springboardMachine = connectInfoMapper.selectById(connectInfo.getSpringboardId());
+//                if (springboardMachine != null) {
+//                    connectInfoDto.setSpringboard(springboardMachine.getHost() + "-" + springboardMachine.getPassword());
+//                }
+//            }
             connectInfoDtoList.add(connectInfoDto);
         });
 

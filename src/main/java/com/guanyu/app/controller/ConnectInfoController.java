@@ -4,6 +4,7 @@ import com.guanyu.app.model.base.Result;
 import com.guanyu.app.model.dto.ConnectInfoDto;
 import com.guanyu.app.service.ConnectInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +31,7 @@ public class ConnectInfoController {
      * @param env 环境标识：dev, uat, pro
      * @return 实例名称集合
      */
-    @RequestMapping("/instances")
+    @GetMapping("/instances")
     public Result<Object> getInstanceNames(@RequestParam Integer type, @RequestParam String env) {
 
         List<String> instances = connectInfoService.getInstanceNameByTypeAndEnv(type, env);
@@ -45,7 +46,7 @@ public class ConnectInfoController {
      * @param database 数据库名称
      * @return 实例名称集合
      */
-    @RequestMapping("/connect")
+    @GetMapping("/info")
     public Result<Object> getConnectInfos(@RequestParam Integer type, @RequestParam String env, @RequestParam String database) {
 
         List<ConnectInfoDto> connectInfos = connectInfoService.getConnectInfos(type, env, database);

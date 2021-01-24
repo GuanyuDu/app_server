@@ -36,7 +36,7 @@ public class ConnectInfo {
     /**
      * 数据库名
      */
-    private String database;
+    private String dbName;
 
     /**
      * 用户名
