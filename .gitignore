@@ -20,7 +20,7 @@
 *.rar
 
 # configuration
-*.yml
+application.yml
 
 # idea configration
 *.iml
