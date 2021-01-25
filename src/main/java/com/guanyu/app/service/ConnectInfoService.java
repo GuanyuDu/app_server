@@ -21,8 +21,8 @@ public interface ConnectInfoService {
      * 获取连接信息
      * @param type 机器类型：0 跳板机，1 实例，2容器
      * @param env 环境标识：dev, uat, pro
-     * @param database 数据库名称
+     * @param dbName 数据库名称
      * @return 实例名称集合
      */
-    List<ConnectInfoDto> getConnectInfos(Integer type, String env, String database);
+    List<ConnectInfoDto> getConnectInfos(Integer type, String env, String dbName);
 }

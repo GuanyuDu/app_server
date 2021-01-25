@@ -43,13 +43,13 @@ public class ConnectInfoController {
      * 获取连接信息
      * @param type 机器类型：0 跳板机，1 实例，2容器
      * @param env 环境标识：dev, uat, pro
-     * @param database 数据库名称
+     * @param dbName 数据库名称
      * @return 实例名称集合
      */
     @GetMapping("/info")
-    public Result<Object> getConnectInfos(@RequestParam Integer type, @RequestParam String env, @RequestParam String database) {
+    public Result<Object> getConnectInfos(@RequestParam Integer type, @RequestParam String env, @RequestParam String dbName) {
 
-        List<ConnectInfoDto> connectInfos = connectInfoService.getConnectInfos(type, env, database);
+        List<ConnectInfoDto> connectInfos = connectInfoService.getConnectInfos(type, env, dbName);
 
         return Result.ok(connectInfos);
     }

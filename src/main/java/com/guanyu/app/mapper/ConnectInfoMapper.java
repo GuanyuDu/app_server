@@ -28,10 +28,10 @@ public interface ConnectInfoMapper extends BaseMapper<ConnectInfo> {
      * 获取连接信息
      * @param type 机器类型：0 跳板机，1 实例，2容器
      * @param env 环境标识：dev, uat, pro
-     * @param database 数据库名
+     * @param dbName 数据库名
      * @return 实例名称集合
      */
-    @Select("select * from  connect_info where type = #{type} and env = #{env} and database = #{database}")
-    List<ConnectInfo> getConnectInfos(Integer type, String env, String database);
+    @Select("select * from  connect_info where type = #{type} and env = #{env} and db_name = #{dbName}")
+    List<ConnectInfo> getConnectInfos(Integer type, String env, String dbName);
 
 }

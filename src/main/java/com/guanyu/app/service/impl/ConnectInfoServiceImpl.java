@@ -42,14 +42,14 @@ public class ConnectInfoServiceImpl implements ConnectInfoService {
     }
 
     @Override
-    public List<ConnectInfoDto> getConnectInfos(Integer type, String env, String database) {
+    public List<ConnectInfoDto> getConnectInfos(Integer type, String env, String dbName) {
 
-        if (type == null || StringUtils.isBlank(env) || StringUtils.isBlank(database)) {
+        if (type == null || StringUtils.isBlank(env) || StringUtils.isBlank(dbName)) {
             logger.info("ConnectInfoServiceImpl -> getInstanceNameByTypeAndEnv | parameters error | " +
-                    "type: {}, env: {}, database: {}", type, env, database);
+                    "type: {}, env: {}, database: {}", type, env, dbName);
             return null;
         }
-        List<ConnectInfo> connectInfos = connectInfoMapper.getConnectInfos(type, env, database);
+        List<ConnectInfo> connectInfos = connectInfoMapper.getConnectInfos(type, env, dbName);
         List<ConnectInfoDto> connectInfoDtoList = new ArrayList<>();
 
         connectInfos.forEach(connectInfo -> {
