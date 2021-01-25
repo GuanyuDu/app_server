@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 /**
+ * 消息查询
  * @author Guanyu
  */
 @Service

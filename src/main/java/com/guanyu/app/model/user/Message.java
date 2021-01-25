@@ -17,6 +17,11 @@ public class Message {
     private BigInteger id;
 
     /**
+     * 父级评论id
+     */
+    private BigInteger parentId;
+
+    /**
      * 微信用户 OpenID
      */
     private BigInteger userOpenid;
