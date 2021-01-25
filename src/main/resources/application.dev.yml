@@ -1,0 +1,7 @@
+# web port
+server:
+  port: 9080
+# mybatis plus enable sql print
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

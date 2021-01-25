@@ -30,21 +30,21 @@ public class TaskRunner implements ApplicationRunner {
         // do something
         normalService.printHi();
 
-        LocalDate localDate = LocalDate.of(2018, 10, 1);
-
-        LocalDate nowDate = LocalDate.now();
-
-        System.out.println(nowDate.toEpochDay() - localDate.toEpochDay());
-
-        LocalDateTime dateTime = LocalDateTime.now();
-        System.out.println(dateTime);
-        DateTimeFormatter dtf;
-        String date;
-
-        dateTime = dateTime.plusDays(-5);
-        System.out.println(dateTime);
-
-        LocalDateTime with = dateTime.with(TemporalAdjusters.previous(DayOfWeek.SUNDAY));
-        System.out.println(with);
+//        LocalDate localDate = LocalDate.of(2018, 10, 1);
+//
+//        LocalDate nowDate = LocalDate.now();
+//
+//        System.out.println(nowDate.toEpochDay() - localDate.toEpochDay());
+//
+//        LocalDateTime dateTime = LocalDateTime.now();
+//        System.out.println(dateTime);
+//        DateTimeFormatter dtf;
+//        String date;
+//
+//        dateTime = dateTime.plusDays(-5);
+//        System.out.println(dateTime);
+//
+//        LocalDateTime with = dateTime.with(TemporalAdjusters.previous(DayOfWeek.SUNDAY));
+//        System.out.println(with);
     }
 }

@@ -19,6 +19,9 @@
 *.tar.gz
 *.rar
 
+# configuration
+*.yml
+
 # idea configration
 *.iml
 .idea
