@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -33,7 +34,10 @@ public class ConnectInfoServiceImpl implements ConnectInfoService {
     @Override
     public List<String> getInstanceNameByTypeAndEnv(Integer type, String env) {
 
-        if (type == null || StringUtils.isBlank(env)) {
+        boolean isNull = type == null || type < 1 || StringUtils.isBlank(env);
+        boolean condition = !Arrays.asList("dev", "uat", "pro").contains(env);
+
+        if (isNull || condition) {
             logger.info("ConnectInfoServiceImpl -> getInstanceNameByTypeAndEnv | parameters error | type: {}, env: {}", type, env);
             return null;
         }
@@ -44,7 +48,9 @@ public class ConnectInfoServiceImpl implements ConnectInfoService {
     @Override
     public List<ConnectInfoDto> getConnectInfos(Integer type, String env, String dbName) {
 
-        if (type == null || StringUtils.isBlank(env) || StringUtils.isBlank(dbName)) {
+        boolean condition = !Arrays.asList("dev", "uat", "pro").contains(env);
+
+        if (type == null || type < 1 || StringUtils.isBlank(env) || StringUtils.isBlank(dbName) || condition) {
             logger.info("ConnectInfoServiceImpl -> getInstanceNameByTypeAndEnv | parameters error | " +
                     "type: {}, env: {}, database: {}", type, env, dbName);
             return null;
