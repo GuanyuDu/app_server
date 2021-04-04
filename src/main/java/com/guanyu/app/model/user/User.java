@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class User {
 
-    private BigInteger id;
+    private Long id;
 
     /**
      * 微信 OpenId

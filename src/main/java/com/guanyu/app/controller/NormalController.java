@@ -3,10 +3,7 @@ package com.guanyu.app.controller;
 import com.guanyu.app.model.base.Result;
 import com.guanyu.app.service.NormalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author guanyu
@@ -32,5 +29,10 @@ public class NormalController {
     @GetMapping("/fruits")
     public Result<Object> getFruits() {
         return Result.ok();
+    }
+
+    @PostMapping("/no-param")
+    public Result<Object> noParameter(String inParam) {
+        return Result.ok(String.format("your param is : %s, don't add any annotation", inParam));
     }
 }
