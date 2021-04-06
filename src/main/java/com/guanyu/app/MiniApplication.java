@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author guanyu
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.guanyu.app"})
 public class MiniApplication {
 
     public static void main(String[] args) {

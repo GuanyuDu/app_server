@@ -25,8 +25,14 @@ public class TestRunner {
         testFunction("dududu", 18);
     }
 
+    /**
+     * 测试方法入口
+     *
+     * 1. 计算表尾缀：printTableSuffix()
+     * 2. SQL生成工具：sqlGenerator()
+     */
     public static void main(String[] args) {
-
+        // call some method
     }
 
     /**
@@ -40,14 +46,15 @@ public class TestRunner {
     }
 
     /**
-     * SQL 生成工具
+     * SQL 生成工具 (待优化)
      */
-    private static void sqlGenerator()  {
+    private static void sqlGenerator() {
 
         String fileNamePrefix = "export_";
         String time = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
 
         File file = new File("F:\\create_sql\\" + fileNamePrefix + time + ".sql");
+        FileOutputStream outputStream = null;
         try {
             if (!file.exists()) {
                 System.out.println("File not exists, created " + fileNamePrefix + time + "...");
@@ -58,36 +65,50 @@ public class TestRunner {
                     return;
                 }
             }
-            FileOutputStream outputStream = new FileOutputStream(file);
-            String sql = "INSERT INTO `yw_cp_open_book_distribution`.`rule_log` (`id`, `rule_id`, `coid`, `coop_status`, " +
-                    "`app_id`, `version`, `remark`, `priority`, `type`, `expression`, `free_flag`, `charge_flag`, " +
-                    "`month_subscribe_flag`, `operate_type`, `create_time`, `creator`, `update_time`) " +
-                    "VALUES (NULL, %s, 90003, 8, 8000300, 1, 'test', 1, 1, '1.1&&1.2', 1, 2, 2, 1, '2021-04-02 22:26:42', 'Guanyu', '2021-04-02 22:36:36');";
-            int ruleId = 100;
-            for (int i = 0; i < 50; i++) {
+             outputStream = new FileOutputStream(file);
+
+            String sql = "CREATE TABLE distribution_cbid_%s LIKE distribution_cbid_0;";
+            int order = 1;
+            for (int i = 0; i < 99; i++) {
                 String cbId = "9000388000300" + i;
-                String msgKey = splitTableGenerator(cbId);
-                outputStream.write(String.format(sql, msgKey).getBytes());
+                Integer hashCode = splitTableGenerator(cbId);
+                outputStream.write(String.format(sql, order).getBytes());
                 outputStream.write("\n".getBytes());
-                ruleId++;
+                order++;
             }
-            outputStream.flush();
-            outputStream.close();
 
         } catch (FileNotFoundException e) {
             System.out.println("[Attention] file not found");
         } catch (IOException e) {
             System.out.println("[Attention] io exception");
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.flush();
+                    outputStream.close();
+                } catch (IOException e) {
+                    System.out.println("[Attention] io exception");
+                }
+            }
         }
     }
 
     /**
      * 分表模拟工具
      */
-    private static String splitTableGenerator(String param) {
+    private static Integer splitTableGenerator(String param) {
         HashCode hashCode = Hashing.murmur3_128().hashString(param, StandardCharsets.UTF_8);
-        int abs = Math.abs(hashCode.asInt());
-        System.out.println(abs % 100);
-        return String.valueOf(abs);
+        return Math.abs(hashCode.asInt());
+    }
+
+    /**
+     * 计算表尾缀
+     * @param coId 公司 id
+     * @param coopStatus 合作形态
+     * @param appId 渠道 id
+     */
+    private static void printTableSuffix(long coId, int coopStatus, long appId) {
+        Integer abs = splitTableGenerator(String.valueOf(coId + coopStatus + appId));
+        System.out.println("[Table Suffix] " + abs % 100);
     }
 }

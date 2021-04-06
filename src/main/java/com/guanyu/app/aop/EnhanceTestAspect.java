@@ -24,7 +24,7 @@ public class EnhanceTestAspect {
             System.out.println("[Param] " + arg);
         }
         Object proceed = joinPoint.proceed(args);
-        System.out.println(proceed.toString());
+        System.out.println("Proceed:" + proceed.toString());
         return proceed;
     }
 }
