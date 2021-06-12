@@ -2,6 +2,7 @@ package com.guanyu.app.controller;
 
 import com.guanyu.app.model.base.Result;
 import com.guanyu.app.service.NormalService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,5 +35,14 @@ public class NormalController {
     @PostMapping("/no-param")
     public Result<Object> noParameter(String inParam) {
         return Result.ok(String.format("your param is : %s, don't add any annotation", inParam));
+    }
+
+    @GetMapping("/test-param")
+    public Result<?> testParam(@RequestParam(name = "param1", required = false) String param1,
+                               @RequestParam(name = "param2", required = false) Integer param2) {
+        System.out.printf("param1: %s", param1);
+        System.out.println("-----------------------");
+        System.out.printf("param2: %s", param2);
+        return Result.ok();
     }
 }

@@ -19,7 +19,6 @@ public class TaskRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // do something
-        testRunner.testFunction("TaskRunner", 0);
     }
 
 }
