@@ -1,6 +1,7 @@
 package com.guanyu.app.model.dto;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,10 +12,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
 public class TestDTO {
 
     @JSONField(name = "CBID")
-    private String CBID;
+    private String cbId;
 
     private String name;
 
