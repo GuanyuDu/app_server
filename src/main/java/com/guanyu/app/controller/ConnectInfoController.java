@@ -1,7 +1,7 @@
 package com.guanyu.app.controller;
 
 import com.guanyu.app.model.base.Result;
-import com.guanyu.app.model.dto.ConnectInfoDto;
+import com.guanyu.app.model.dto.ConnectInfoDTO;
 import com.guanyu.app.service.ConnectInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +49,7 @@ public class ConnectInfoController {
     @GetMapping("/info")
     public Result<Object> getConnectInfos(@RequestParam Integer type, @RequestParam String env, @RequestParam String dbName) {
 
-        List<ConnectInfoDto> connectInfos = connectInfoService.getConnectInfos(type, env, dbName);
+        List<ConnectInfoDTO> connectInfos = connectInfoService.getConnectInfos(type, env, dbName);
 
         return Result.ok(connectInfos);
     }

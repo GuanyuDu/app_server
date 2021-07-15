@@ -1,6 +1,6 @@
 package com.guanyu.app.service;
 
-import com.guanyu.app.model.dto.ConnectInfoDto;
+import com.guanyu.app.model.dto.ConnectInfoDTO;
 
 import java.util.List;
 
@@ -24,5 +24,5 @@ public interface ConnectInfoService {
      * @param dbName 数据库名称
      * @return 实例名称集合
      */
-    List<ConnectInfoDto> getConnectInfos(Integer type, String env, String dbName);
+    List<ConnectInfoDTO> getConnectInfos(Integer type, String env, String dbName);
 }

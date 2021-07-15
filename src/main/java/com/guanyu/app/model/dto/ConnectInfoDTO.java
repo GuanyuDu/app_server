@@ -6,7 +6,7 @@ import lombok.Data;
  * @author Guanyu
  */
 @Data
-public class ConnectInfoDto {
+public class ConnectInfoDTO {
 
     private String host;
 

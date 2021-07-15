@@ -1,8 +1,7 @@
 package com.guanyu.app.service.impl;
 
-import com.guanyu.app.model.user.Message;
+import com.guanyu.app.model.user.MessageDO;
 
-import java.lang.reflect.Field;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +21,7 @@ public class DemoService {
         String[] headers = {"用户ID", "评论", "点赞数", "创建时间"};
         String[] fieldNames = {"userOpenid", "comments", "isLike", "createTime"};
 
-        List<Message> messages = new ArrayList<>();
+        List<MessageDO> messages = new ArrayList<>();
         messages.add(createMessage(1L, "haha", 18, new Date()));
         messages.add(createMessage(2L, "nice", 28, new Date()));
         try {
@@ -41,8 +40,8 @@ public class DemoService {
         }
     }
 
-    private static Message createMessage(Long id, String comments, Integer isLike, Date createTime) {
-        Message msg = new Message();
+    private static MessageDO createMessage(Long id, String comments, Integer isLike, Date createTime) {
+        MessageDO msg = new MessageDO();
         msg.setUserOpenid(new BigInteger(id.toString()));
         msg.setComments(comments);
         msg.setIsLike(isLike);
