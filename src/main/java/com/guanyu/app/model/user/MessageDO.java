@@ -22,17 +22,17 @@ import java.util.Date;
 public class MessageDO {
 
     @TableId(type = IdType.AUTO)
-    private BigInteger id;
+    private Long id;
 
     /**
      * 父级评论id
      */
-    private BigInteger parentId;
+    private Long parentId;
 
     /**
      * 微信用户 OpenID
      */
-    private BigInteger openId;
+    private String openId;
 
     /**
      * 评论

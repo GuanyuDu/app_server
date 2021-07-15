@@ -19,7 +19,7 @@ import lombok.ToString;
 public class ConnectInfoDO {
 
     @TableId(type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
      * 环境标识：dev, uat, pro

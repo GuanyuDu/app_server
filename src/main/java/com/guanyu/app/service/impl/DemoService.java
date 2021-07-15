@@ -22,8 +22,8 @@ public class DemoService {
         String[] fieldNames = {"userOpenid", "comments", "isLike", "createTime"};
 
         List<MessageDO> messages = new ArrayList<>();
-        messages.add(createMessage(1L, "haha", 18, new Date()));
-        messages.add(createMessage(2L, "nice", 28, new Date()));
+        messages.add(createMessage("fhi4uw3ijo2j3oa65dbt", "haha", 18, new Date()));
+        messages.add(createMessage("fh5iuw3ijo2j3oa21sac", "nice", 28, new Date()));
         try {
             parseMsg(messages, fieldNames);
         } catch (NoSuchFieldException e) {
@@ -40,9 +40,9 @@ public class DemoService {
         }
     }
 
-    private static MessageDO createMessage(Long id, String comments, Integer isLike, Date createTime) {
+    private static MessageDO createMessage(String openId, String comments, Integer isLike, Date createTime) {
         MessageDO msg = new MessageDO();
-        msg.setUserOpenid(new BigInteger(id.toString()));
+        msg.setOpenId(openId);
         msg.setComments(comments);
         msg.setIsLike(isLike);
         msg.setCreateTime(createTime);
