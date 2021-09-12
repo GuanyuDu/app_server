@@ -1,4 +1,4 @@
-package com.guanyu.app.model.dto;
+package com.guanyu.app.model.miniapp.dto;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;

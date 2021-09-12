@@ -1,12 +1,10 @@
-package com.guanyu.app.model.user;
+package com.guanyu.app.model.miniapp.user;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 /**

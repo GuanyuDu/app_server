@@ -1,6 +1,6 @@
 package com.guanyu.app.config;
 
-import com.guanyu.app.utils.TestRunner;
+import com.guanyu.app.util.TestRunner;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;

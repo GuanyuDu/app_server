@@ -1,14 +1,12 @@
-package com.guanyu.app.model.user;
+package com.guanyu.app.model.miniapp.message;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 /**

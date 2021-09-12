@@ -1,6 +1,6 @@
 package com.guanyu.app.service;
 
-import com.guanyu.app.model.dto.ConnectInfoDTO;
+import com.guanyu.app.model.toolbox.dto.ConnectInfoDTO;
 
 import java.util.List;
 

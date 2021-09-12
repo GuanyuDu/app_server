@@ -1,7 +1,7 @@
 package com.guanyu.app.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.guanyu.app.model.user.MessageDO;
+import com.guanyu.app.model.miniapp.message.MessageDO;
 
 /**
  * @author Guanyu

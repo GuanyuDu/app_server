@@ -2,7 +2,7 @@ package com.guanyu.app.mapper;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.guanyu.app.model.tool.ConnectInfoDO;
+import com.guanyu.app.model.toolbox.ConnectInfoDO;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 

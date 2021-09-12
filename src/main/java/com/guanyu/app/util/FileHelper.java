@@ -1,4 +1,4 @@
-package com.guanyu.app.utils;
+package com.guanyu.app.util;
 
 import org.apache.commons.lang3.StringUtils;
 

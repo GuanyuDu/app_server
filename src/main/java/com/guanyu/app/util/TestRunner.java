@@ -1,35 +1,28 @@
-package com.guanyu.app.utils;
+package com.guanyu.app.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.annotation.JsonAlias;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.hash.HashCode;
 import com.google.common.hash.Hashing;
-import com.guanyu.app.model.dto.TestDTO;
-import com.mysql.cj.xdevapi.JsonArray;
-import org.apache.commons.lang3.StringUtils;
+import com.guanyu.app.model.miniapp.user.UserDO;
+import org.apache.catalina.User;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.springframework.stereotype.Component;
-import sun.net.www.http.HttpClient;
+import org.yaml.snakeyaml.reader.StreamReader;
 
 import javax.annotation.PostConstruct;
-import javax.xml.bind.SchemaOutputResolver;
+import javax.annotation.Resource;
 import java.io.*;
-import java.math.BigDecimal;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * test class
@@ -52,10 +45,42 @@ public class TestRunner {
      */
     public static void main(String[] args) throws IOException {
         // call some method
-        FileReader fileReader = new FileReader("C:\\Users\\v.duguanyu\\Desktop\\new_text");
-        BufferedReader buffer = new BufferedReader(fileReader);
-        String s = buffer.readLine();
-        System.out.println(new String(s.getBytes("windows-1252"), StandardCharsets.UTF_8));
+//        Optional<UserDO> user = getUser(123L);
+//        UserDO userDO1 = user.orElse(new UserDO());
+//        System.out.println(userDO1);
+//        if (user.isPresent()) {
+//            UserDO userDO = user.get();
+//        }
+        Set<Long> result = new HashSet<>();
+
+        FileReader reader = new FileReader("C:\\Users\\Guanyu\\Desktop\\demo.log");
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        while (true) {
+            String line = bufferedReader.readLine();
+            if (line == null) {
+                break;
+            }
+            List<Long> strings = JSON.parseArray(line).toJavaList(Long.class);
+            result.addAll(strings);
+        }
+        File file = new File("C:\\Users\\Guanyu\\Desktop\\new.log");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileWriter writer = new FileWriter(file, true);
+        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        for (Long id : result) {
+            bufferedWriter.write(id.toString());
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+    }
+
+    public static Optional<UserDO> getUser(Long id) {
+        UserDO user = new UserDO();
+        user.setNickName("nic");
+        user.setId(id);
+        return Optional.of(null);
     }
 
     static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {

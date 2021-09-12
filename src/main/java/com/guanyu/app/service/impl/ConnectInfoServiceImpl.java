@@ -1,8 +1,8 @@
 package com.guanyu.app.service.impl;
 
 import com.guanyu.app.mapper.ConnectInfoMapper;
-import com.guanyu.app.model.dto.ConnectInfoDTO;
-import com.guanyu.app.model.tool.ConnectInfoDO;
+import com.guanyu.app.model.toolbox.dto.ConnectInfoDTO;
+import com.guanyu.app.model.toolbox.ConnectInfoDO;
 import com.guanyu.app.service.ConnectInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

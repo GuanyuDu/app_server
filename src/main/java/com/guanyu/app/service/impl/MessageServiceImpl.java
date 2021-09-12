@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guanyu.app.mapper.MessageMapper;
-import com.guanyu.app.model.user.MessageDO;
+import com.guanyu.app.model.miniapp.message.MessageDO;
 import com.guanyu.app.service.MessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

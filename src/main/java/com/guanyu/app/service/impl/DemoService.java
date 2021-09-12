@@ -1,6 +1,6 @@
 package com.guanyu.app.service.impl;
 
-import com.guanyu.app.model.user.MessageDO;
+import com.guanyu.app.model.miniapp.message.MessageDO;
 
 import java.util.ArrayList;
 import java.util.Date;
