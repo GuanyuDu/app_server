@@ -12,7 +12,6 @@ public enum ErrorCode {
     /**
      * 请求成功
      */
-    SUCCESS(2000,"请求成功"),
     PATH_NOT_FOUND(404,"路径未找到"),
     PARAM_TYPE_ERROR(400,"参数类型错误"),
     UNKNOWN_ERROR(500,"服务器开小差了"),

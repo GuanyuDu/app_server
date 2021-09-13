@@ -1,6 +1,7 @@
 package com.guanyu.app.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.guanyu.app.constant.ErrorCode;
 import com.guanyu.app.model.base.PageInfo;
 import com.guanyu.app.model.base.Result;
 import com.guanyu.app.model.user.Message;
@@ -35,7 +36,7 @@ public class MessageController {
             return Result.ok();
         } catch (Exception e) {
             e.printStackTrace();
-            return Result.fail(500, "服务器内部错误");
+            return Result.fail(ErrorCode.UNKNOWN_ERROR);
         }
     }
 }

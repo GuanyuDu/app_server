@@ -17,9 +17,7 @@ public class ExportHelper {
     public <T> void writeFile(List<T> data) throws FileNotFoundException {
 
         File file = createFile("", "");
-
         FileOutputStream outputStream = new FileOutputStream(file);
-
         for (Object row : data) {
             if (row instanceof Integer) {
 

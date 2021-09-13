@@ -1,5 +1,6 @@
 package com.guanyu.app.model.base;
 
+import com.guanyu.app.constant.ErrorCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class Result<T> {
 
-    public static final int SUC_CODE = 20000;
+    public static final int SUC_CODE = 0;
 
     public static final String SUC_MSG = "success";
 
@@ -41,6 +42,10 @@ public class Result<T> {
 
     public static <T> Result<T> ok(T data) {
         return new Result<>(SUC_CODE, SUC_MSG, data);
+    }
+
+    public static <T> Result<T> fail(ErrorCode errorCode) {
+        return new Result<>(errorCode.code, errorCode.msg);
     }
 
     public static <T> Result<T> fail(int code, String msg) {

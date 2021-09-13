@@ -22,7 +22,7 @@ public class TestRunner {
 
     @PostConstruct
     public void init() {
-        testFunction("dududu", 18);
+
     }
 
     /**
@@ -33,6 +33,7 @@ public class TestRunner {
      */
     public static void main(String[] args) {
         // call some method
+
     }
 
     /**
