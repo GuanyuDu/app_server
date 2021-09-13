@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnhanceTestAspect {
 
-    @Pointcut("execution(public * com.guanyu.app.utils.TestRunner.testFunction(..))")
+    @Pointcut("execution(public * com.guanyu.app.util.TestRunner.testFunction(..))")
     public void testRunner() {}
 
     @Around("testRunner()")

@@ -1,4 +1,4 @@
-package com.guanyu.app.utils;
+package com.guanyu.app.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;

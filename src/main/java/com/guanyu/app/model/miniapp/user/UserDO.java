@@ -1,22 +1,27 @@
-package com.guanyu.app.model.user;
+package com.guanyu.app.model.miniapp.user;
 
-import lombok.Data;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 /**
  * @author Guanyu
  */
-@Data
-public class User {
+@Getter
+@Setter
+@ToString
+@TableName(value = "user")
+public class UserDO {
 
     private Long id;
 
     /**
      * 微信 OpenId
      */
-    private String openid;
+    private String openId;
 
     /**
      * 昵称
@@ -31,7 +36,7 @@ public class User {
     /**
      * 性别: 0: 未知, 1: 男, 2: 女
      */
-    private int sex;
+    private Integer sex;
 
     /**
      * 国家

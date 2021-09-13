@@ -12,11 +12,11 @@ public enum ErrorCode {
     /**
      * 请求成功
      */
-    PATH_NOT_FOUND(404,"路径未找到"),
-    PARAM_TYPE_ERROR(400,"参数类型错误"),
-    UNKNOWN_ERROR(500,"服务器开小差了"),
-    INVALID_REQUEST(401, "key验证未通过");
-
+    SUCCESS(0,"服务酱受理了你的请求"),
+    PATH_NOT_FOUND(404,"服务酱迷路了"),
+    PARAM_TYPE_ERROR(400,"检查一下你的请求参数吧"),
+    INVALID_REQUEST(401, "服务酱好像不认识你哦"),
+    UNKNOWN_ERROR(500,"哎呀！服务酱没有理你，并向你丢了一只 Bug");
 
     public final int code;
     public final String msg;

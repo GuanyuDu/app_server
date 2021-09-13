@@ -1,8 +1,8 @@
 package com.guanyu.app.service.impl;
 
 import com.guanyu.app.mapper.ConnectInfoMapper;
-import com.guanyu.app.model.dto.ConnectInfoDto;
-import com.guanyu.app.model.tool.ConnectInfo;
+import com.guanyu.app.model.toolbox.dto.ConnectInfoDTO;
+import com.guanyu.app.model.toolbox.ConnectInfoDO;
 import com.guanyu.app.service.ConnectInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -46,7 +46,7 @@ public class ConnectInfoServiceImpl implements ConnectInfoService {
     }
 
     @Override
-    public List<ConnectInfoDto> getConnectInfos(Integer type, String env, String dbName) {
+    public List<ConnectInfoDTO> getConnectInfos(Integer type, String env, String dbName) {
 
         boolean condition = !Arrays.asList("dev", "uat", "pro").contains(env);
 
@@ -55,25 +55,25 @@ public class ConnectInfoServiceImpl implements ConnectInfoService {
                     "type: {}, env: {}, database: {}", type, env, dbName);
             return null;
         }
-        List<ConnectInfo> connectInfos = connectInfoMapper.getConnectInfos(type, env, dbName);
-        List<ConnectInfoDto> connectInfoDtoList = new ArrayList<>();
+        List<ConnectInfoDO> connectInfoDOS = connectInfoMapper.getConnectInfos(type, env, dbName);
+        List<ConnectInfoDTO> connectInfoDTOList = new ArrayList<>();
 
-        connectInfos.forEach(connectInfo -> {
-            ConnectInfoDto connectInfoDto = new ConnectInfoDto();
-            connectInfoDto.setHost(connectInfo.getHost());
-            connectInfoDto.setPort(connectInfo.getPort());
-            connectInfoDto.setUsername(connectInfo.getUsername());
-            connectInfoDto.setPassword(connectInfo.getPassword());
+        connectInfoDOS.forEach(connectInfoDO -> {
+            ConnectInfoDTO connectInfoDto = new ConnectInfoDTO();
+            connectInfoDto.setHost(connectInfoDO.getHost());
+            connectInfoDto.setPort(connectInfoDO.getPort());
+            connectInfoDto.setUsername(connectInfoDO.getUsername());
+            connectInfoDto.setPassword(connectInfoDO.getPassword());
             // set springboard machine
-            if (connectInfo.getType() == 1) {
-                ConnectInfo springboardMachine = connectInfoMapper.selectById(connectInfo.getSpringboardId());
+            if (connectInfoDO.getType() == 1) {
+                ConnectInfoDO springboardMachine = connectInfoMapper.selectById(connectInfoDO.getSpringboardId());
                 if (springboardMachine != null) {
                     connectInfoDto.setSpringboard(springboardMachine.getHost() + "-" + springboardMachine.getPassword());
                 }
             }
-            connectInfoDtoList.add(connectInfoDto);
+            connectInfoDTOList.add(connectInfoDto);
         });
 
-        return connectInfoDtoList;
+        return connectInfoDTOList;
     }
 }

@@ -1,6 +1,6 @@
 package com.guanyu.app.config;
 
-import com.guanyu.app.utils.TestRunner;
+import com.guanyu.app.util.TestRunner;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,6 @@ public class TaskRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // do something
-        testRunner.testFunction("TaskRunner", 0);
     }
 
 }

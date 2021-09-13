@@ -1,7 +1,5 @@
 package com.guanyu.app.interceptor;
 
-import com.guanyu.app.constant.ErrorCode;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -24,20 +22,22 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-        String clientKey = request.getHeader("primary-key");
-
-        if (StringUtils.isNotBlank(clientKey) && clientKey.equals(PRIMARY_KEY)) {
-            return true;
-        } else {
-            logger.info("LoginInterceptor -> proHandle | illegality request | clientKey: {}", clientKey);
-            String message = "{\"code\":%s, \"flag\":false, \"message\":\"%s\"}";
-
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("application/json; charset=UTF-8");
-            response.getWriter().write(String.format(message, ErrorCode.INVALID_REQUEST.code, ErrorCode.INVALID_REQUEST.msg));
-            return false;
-        }
+        String id = request.getParameter("id");
+        System.out.printf("[Login Interceptor] preHandle %s%n", id);
+        return true;
+//        String clientKey = request.getHeader("primary-key");
+//
+//        if (StringUtils.isNotBlank(clientKey) && clientKey.equals(PRIMARY_KEY)) {
+//            return true;
+//        } else {
+//            logger.info("LoginInterceptor -> proHandle | illegality request | clientKey: {}", clientKey);
+//            String message = "{\"code\":%s, \"flag\":false, \"message\":\"%s\"}";
+//
+//            response.setCharacterEncoding("UTF-8");
+//            response.setContentType("application/json; charset=UTF-8");
+//            response.getWriter().write(String.format(message, ErrorCode.INVALID_REQUEST.code, ErrorCode.INVALID_REQUEST.msg));
+//            return false;
+//        }
 
     }
 

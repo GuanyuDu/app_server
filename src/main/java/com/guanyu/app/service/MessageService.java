@@ -1,7 +1,7 @@
 package com.guanyu.app.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.guanyu.app.model.user.Message;
+import com.guanyu.app.model.miniapp.message.MessageDO;
 
 /**
  * @author Guanyu
@@ -14,7 +14,7 @@ public interface MessageService {
      * @param pageSize per page size
      * @return message list
      */
-    IPage<Message> getMessages(int currentPage, int pageSize);
+    IPage<MessageDO> getMessages(int currentPage, int pageSize);
 
     /**
      * add new message

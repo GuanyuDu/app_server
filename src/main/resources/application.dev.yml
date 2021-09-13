@@ -1,6 +1,7 @@
 # web port
 server:
   port: 9080
+  path: /app
 # mybatis plus enable sql print
 mybatis-plus:
   configuration:
