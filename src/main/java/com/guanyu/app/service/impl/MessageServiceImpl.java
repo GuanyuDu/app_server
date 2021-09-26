@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guanyu.app.mapper.MessageMapper;
-import com.guanyu.app.model.user.Message;
+import com.guanyu.app.model.miniapp.message.MessageDO;
 import com.guanyu.app.service.MessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,20 +30,20 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public IPage<Message> getMessages(int currentPage, int pageSize) {
+    public IPage<MessageDO> getMessages(int currentPage, int pageSize) {
         // page
-        IPage<Message> page = new Page<>(currentPage, pageSize);
+        IPage<MessageDO> page = new Page<>(currentPage, pageSize);
         // condition
-        QueryWrapper<Message> wrapper = new QueryWrapper<>();
+        QueryWrapper<MessageDO> wrapper = new QueryWrapper<>();
         // get data
         return messageMapper.selectPage(page, wrapper);
     }
 
     @Override
     public void addMessage(String comment) {
-        Message message = new Message();
-        message.setComments(comment);
-        message.setCreateTime(new Date());
-        messageMapper.insert(message);
+        MessageDO messageDO = new MessageDO();
+        messageDO.setComments(comment);
+        messageDO.setCreateTime(new Date());
+        messageMapper.insert(messageDO);
     }
 }

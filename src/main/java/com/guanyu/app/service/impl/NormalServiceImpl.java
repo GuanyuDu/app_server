@@ -11,6 +11,6 @@ public class NormalServiceImpl implements NormalService {
 
     @Override
     public void printHi() {
-
+        System.out.println("Service, say hi!");
     }
 }

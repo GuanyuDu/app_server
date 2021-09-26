@@ -1,4 +1,4 @@
-package com.guanyu.app.model.dto;
+package com.guanyu.app.model.toolbox.dto;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import lombok.Data;
  * @author Guanyu
  */
 @Data
-public class ConnectInfoDto {
+public class ConnectInfoDTO {
 
     private String host;
 

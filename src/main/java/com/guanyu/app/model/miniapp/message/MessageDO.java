@@ -1,30 +1,36 @@
-package com.guanyu.app.model.user;
+package com.guanyu.app.model.miniapp.message;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 /**
+ * 信息实体
  * @author Guanyu
  */
-@Data
-public class Message {
+@Getter
+@Setter
+@ToString
+@TableName(value = "message")
+public class MessageDO {
 
     @TableId(type = IdType.AUTO)
-    private BigInteger id;
+    private Long id;
 
     /**
      * 父级评论id
      */
-    private BigInteger parentId;
+    private Long parentId;
 
     /**
      * 微信用户 OpenID
      */
-    private BigInteger userOpenid;
+    private String openId;
 
     /**
      * 评论
@@ -34,14 +40,20 @@ public class Message {
     /**
      * 是否置顶: 1: 置顶, 0: 未置顶
      */
-    private int top;
+    private Integer top;
 
     /**
      * 点赞数
      */
-    private int isLike;
+    private Integer isLike;
 
+    /**
+     * 创建时间
+     */
     private Date createTime;
 
+    /**
+     * 更新时间
+     */
     private Date updateTime;
 }

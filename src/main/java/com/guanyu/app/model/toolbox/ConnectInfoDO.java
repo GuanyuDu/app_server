@@ -1,17 +1,24 @@
-package com.guanyu.app.model.tool;
+package com.guanyu.app.model.toolbox;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
+ * 链接信息实体
  * @author Guanyu
  */
-@Data
-public class ConnectInfo {
+@Getter
+@Setter
+@ToString
+@TableName(value = "connect_info")
+public class ConnectInfoDO {
 
     @TableId(type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
      * 环境标识：dev, uat, pro
