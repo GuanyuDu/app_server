@@ -12,7 +12,7 @@ import java.util.List;
  * @author Guanyuweb_tools
  */
 @Component
-@DS("web_tools")
+@DS("mini_app")
 public interface ConnectInfoMapper extends BaseMapper<ConnectInfoDO> {
 
     /**

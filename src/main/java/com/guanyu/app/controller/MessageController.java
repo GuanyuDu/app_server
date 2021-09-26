@@ -13,7 +13,6 @@ import javax.annotation.Resource;
  * @author Guanyu
  */
 @RestController
-@RequestMapping("api")
 public class MessageController {
 
     @Resource
@@ -25,8 +24,8 @@ public class MessageController {
      * @param id 消息id
      * @return 消息对象
      */
-    @GetMapping("/messages/{id}")
-    public Result<JSONObject> getMessage(@PathVariable String id) {
+    @GetMapping("/message/{id}")
+    public Result<JSONObject> getMessage(@PathVariable Long id) {
         System.out.println("Get message id: " + id);
         return Result.ok();
     }
@@ -38,9 +37,9 @@ public class MessageController {
      * @param pageSize    页大小
      * @return 消息对象列表
      */
-    @GetMapping("/messages")
-    public Result<JSONObject> getMessages(@RequestParam(required = false, defaultValue = "1") int currentPage,
-                                          @RequestParam(required = false, defaultValue = "10") int pageSize) {
+    @GetMapping("/message")
+    public Result<JSONObject> getMessages(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
+                                          @RequestParam(name = "size", required = false, defaultValue = "10") int pageSize) {
         System.out.println("Get messages currentPage: " + currentPage + " pageSize: " + pageSize);
         return Result.ok();
     }
@@ -49,29 +48,23 @@ public class MessageController {
      * 创建消息
      *
      * @param content 消息内容
-     * @return
+     * @return 操作结果
      */
-    @PostMapping("/messages")
+    @PostMapping("/message")
     public Result<JSONObject> createMessage(@RequestParam String content) {
-        System.out.println("create message, content: " + content);
+        System.out.println("created message, content: " + content);
         return Result.ok();
     }
 
-    @PutMapping("/messages")
-    public Result<JSONObject> updateMessage() {
-        System.out.println("update message");
-        return Result.ok();
-    }
-
-    @PatchMapping("messages")
-    public Result<JSONObject> updatePartOfMessage() {
-        System.out.println("update message part");
-        return Result.ok();
-    }
-
-    @DeleteMapping("/messages")
-    public Result<JSONObject> deleteMessage() {
-        System.out.println("delete message");
+    /**
+     * 删除消息
+     *
+     * @param id 消息 id
+     * @return 操作结果
+     */
+    @DeleteMapping("/message/{id}")
+    public Result<JSONObject> deleteMessage(@PathVariable Long id) {
+        System.out.println("deleted message id: " + id);
         return Result.ok();
     }
 

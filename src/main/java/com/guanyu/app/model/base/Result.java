@@ -11,9 +11,9 @@ import lombok.Setter;
 @Setter
 public class Result<T> {
 
-    public static final int SUC_CODE = 20000;
+    public static final int SUC_CODE = 0;
 
-    public static final String SUC_MSG = "success";
+    public static final String SUC_MSG = "服务酱受理了你的请求";
 
     protected int code;
 
