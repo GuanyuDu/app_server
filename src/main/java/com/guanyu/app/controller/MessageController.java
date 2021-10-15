@@ -1,8 +1,11 @@
 package com.guanyu.app.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.guanyu.app.model.base.Result;
-import com.guanyu.app.service.MessageService;
+import com.guanyu.app.constant.ErrorCode;
+import com.guanyu.app.model.dto.base.PageInfo;
+import com.guanyu.app.model.dto.base.Result;
+import com.guanyu.app.model.miniapp.message.MessageDO;
+import com.guanyu.app.service.IMessageService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -16,7 +19,7 @@ import javax.annotation.Resource;
 public class MessageController {
 
     @Resource
-    private MessageService messageService;
+    private IMessageService messageService;
 
     /**
      * 获取指定消息
@@ -33,15 +36,18 @@ public class MessageController {
     /**
      * 获取消息列表
      *
-     * @param currentPage 当前页
-     * @param pageSize    页大小
-     * @return 消息对象列表
+     * @param page  当前页
+     * @param size  页大小
+     * @return      消息对象列表
      */
     @GetMapping("/message")
-    public Result<JSONObject> getMessages(@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
-                                          @RequestParam(name = "size", required = false, defaultValue = "10") int pageSize) {
-        System.out.println("Get messages currentPage: " + currentPage + " pageSize: " + pageSize);
-        return Result.ok();
+    public Result<?> getMessages(@RequestParam(name = "page", required = false, defaultValue = "1") long page,
+                                 @RequestParam(name = "size", required = false, defaultValue = "10") long size) {
+        if (page < 1) {
+            return Result.fail(ErrorCode.PARAM_TYPE_ERROR);
+        }
+        PageInfo<MessageDO> messages = messageService.getMessages(page, size);
+        return Result.ok(messages);
     }
 
     /**
@@ -51,8 +57,9 @@ public class MessageController {
      * @return 操作结果
      */
     @PostMapping("/message")
-    public Result<JSONObject> createMessage(@RequestParam String content) {
-        System.out.println("created message, content: " + content);
+    public Result<JSONObject> createMessage(@RequestParam(required = false, defaultValue = "0") Long replyId,
+                                            @RequestParam String content) {
+        messageService.addMessage(replyId, content);
         return Result.ok();
     }
 
@@ -64,7 +71,7 @@ public class MessageController {
      */
     @DeleteMapping("/message/{id}")
     public Result<JSONObject> deleteMessage(@PathVariable Long id) {
-        System.out.println("deleted message id: " + id);
+        messageService.delMessage(id);
         return Result.ok();
     }
 

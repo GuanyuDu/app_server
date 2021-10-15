@@ -1,8 +1,6 @@
 package com.guanyu.app.controller;
 
-import com.guanyu.app.model.base.Result;
-import com.guanyu.app.model.toolbox.dto.ConnectInfoDTO;
-import com.guanyu.app.service.ConnectInfoService;
+import com.guanyu.app.model.dto.base.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

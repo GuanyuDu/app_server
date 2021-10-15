@@ -1,7 +1,7 @@
 package com.guanyu.app.aop;
 
 import com.guanyu.app.constant.ErrorCode;
-import com.guanyu.app.model.base.Result;
+import com.guanyu.app.model.dto.base.Result;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

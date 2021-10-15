@@ -1,5 +1,7 @@
 package com.guanyu.app.model.miniapp.user;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,9 +15,10 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-@TableName(value = "user")
+@TableName(value = "mini_user")
 public class UserDO {
 
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -26,22 +29,17 @@ public class UserDO {
     /**
      * 昵称
      */
-    private String nickName;
+    private String nickname;
 
     /**
      * 头像 URL
      */
-    private String cover;
+    private String avatar;
 
     /**
-     * 性别: 0: 未知, 1: 男, 2: 女
+     * 性别: 0: 女, 1: 男, 2: 未知
      */
     private Integer sex;
-
-    /**
-     * 国家
-     */
-    private String country;
 
     /**
      * 创建时间
