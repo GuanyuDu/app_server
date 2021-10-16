@@ -78,7 +78,6 @@ public class TestRunner {
 
     public static Optional<UserDO> getUser(Long id) {
         UserDO user = new UserDO();
-        user.setNickName("nic");
         user.setId(id);
         return Optional.of(null);
     }

@@ -1,8 +1,7 @@
 package com.guanyu.app.service;
 
 import com.guanyu.app.model.dto.base.PageInfo;
-import com.guanyu.app.model.dto.base.Result;
-import com.guanyu.app.model.miniapp.message.MessageDO;
+import com.guanyu.app.model.dto.message.MessageDTO;
 
 /**
  * @author Guanyu
@@ -16,7 +15,7 @@ public interface IMessageService {
      * @param size  页大小
      * @return      消息列表
      */
-    PageInfo<MessageDO> getMessages(Long page, Long size);
+    PageInfo<MessageDTO> getMessages(Long page, Long size);
 
     /**
      * 添加一条新消息

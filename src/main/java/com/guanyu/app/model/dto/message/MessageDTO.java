@@ -1,5 +1,7 @@
 package com.guanyu.app.model.dto.message;
 
+import com.guanyu.app.model.miniapp.message.MessageDO;
+import com.guanyu.app.model.miniapp.user.UserDO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -46,4 +48,16 @@ public class MessageDTO {
      * 创建时间
      */
     private Date createTime;
+
+
+    public static MessageDTO init(MessageDO messageDO, UserDO user) {
+        MessageDTO message = new MessageDTO();
+        message.setNickname(user.getNickname());
+        message.setAvatar(user.getAvatar());
+        message.setComment(messageDO.getComment());
+        message.setTopFlag(messageDO.getTopFlag());
+        message.setLikeNum(messageDO.getLikeNum());
+        message.setCreateTime(messageDO.getCreateTime());
+        return message;
+    }
 }

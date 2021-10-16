@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.guanyu.app.constant.ErrorCode;
 import com.guanyu.app.model.dto.base.PageInfo;
 import com.guanyu.app.model.dto.base.Result;
-import com.guanyu.app.model.miniapp.message.MessageDO;
+import com.guanyu.app.model.dto.message.MessageDTO;
 import com.guanyu.app.service.IMessageService;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,8 +46,14 @@ public class MessageController {
         if (page < 1) {
             return Result.fail(ErrorCode.PARAM_TYPE_ERROR);
         }
-        PageInfo<MessageDO> messages = messageService.getMessages(page, size);
-        return Result.ok(messages);
+        try {
+            PageInfo<MessageDTO> messages = messageService.getMessages(page, size);
+            return Result.ok(messages);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return Result.fail(ErrorCode.UNKNOWN_ERROR);
     }
 
     /**
