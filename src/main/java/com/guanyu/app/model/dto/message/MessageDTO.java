@@ -2,10 +2,13 @@ package com.guanyu.app.model.dto.message;
 
 import com.guanyu.app.model.miniapp.message.MessageDO;
 import com.guanyu.app.model.miniapp.user.UserDO;
+import com.guanyu.app.util.TimeFormatHelper;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -47,7 +50,7 @@ public class MessageDTO {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private String createTime;
 
 
     public static MessageDTO init(MessageDO messageDO, UserDO user) {
@@ -57,7 +60,8 @@ public class MessageDTO {
         message.setComment(messageDO.getComment());
         message.setTopFlag(messageDO.getTopFlag());
         message.setLikeNum(messageDO.getLikeNum());
-        message.setCreateTime(messageDO.getCreateTime());
+        message.setCreateTime(TimeFormatHelper.STANDARD.format(LocalDateTime
+                .ofInstant(messageDO.getCreateTime().toInstant(), ZoneId.systemDefault())));
         return message;
     }
 }
