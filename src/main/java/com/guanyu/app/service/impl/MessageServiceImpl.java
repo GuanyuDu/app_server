@@ -7,13 +7,13 @@ import com.guanyu.app.model.dto.base.PageInfo;
 import com.guanyu.app.model.dto.message.MessageDTO;
 import com.guanyu.app.model.miniapp.message.MessageDO;
 import com.guanyu.app.model.miniapp.user.UserDO;
-import com.guanyu.app.service.IMessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
  * @author Guanyu
  */
 @Service
-public class MessageService implements IMessageService {
+public class MessageServiceImpl implements com.guanyu.app.service.MessageService {
 
-    private final Logger logger = LoggerFactory.getLogger(MessageService.class);
+    private final Logger logger = LoggerFactory.getLogger(MessageServiceImpl.class);
 
     @Resource
     private UserDao userDao;
@@ -34,7 +34,6 @@ public class MessageService implements IMessageService {
 
     @Override
     public PageInfo<MessageDTO> getMessages(Long page, Long size) {
-
         long pageSize = Math.min(size, PageCons.DEFAULT_PAGE_SIZE);
         long offset = (page - 1) * pageSize;
         List<MessageDO> messages = messageDao.getMessages(offset, pageSize);
@@ -49,13 +48,11 @@ public class MessageService implements IMessageService {
 
     @Override
     public void addMessage(long replyId, String comment) {
-
         messageDao.addMessage(MessageDO.init(1L, replyId, comment));
     }
 
     @Override
     public void delMessage(long id) {
-
         int effectLine = messageDao.delMessage(id);
         if (effectLine <= 0) {
             throw new RuntimeException();

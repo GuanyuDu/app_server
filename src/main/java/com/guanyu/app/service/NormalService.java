@@ -3,7 +3,7 @@ package com.guanyu.app.service;
 /**
  * @author guanyu
  */
-public interface INormalService {
+public interface NormalService {
 
     /**
      * 打印输出

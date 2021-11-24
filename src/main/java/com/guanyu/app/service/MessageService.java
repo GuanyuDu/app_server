@@ -6,7 +6,7 @@ import com.guanyu.app.model.dto.message.MessageDTO;
 /**
  * @author Guanyu
  */
-public interface IMessageService {
+public interface MessageService {
 
     /**
      * 首页消息列表

@@ -5,7 +5,7 @@ import com.guanyu.app.constant.ErrorCode;
 import com.guanyu.app.model.dto.base.PageInfo;
 import com.guanyu.app.model.dto.base.Result;
 import com.guanyu.app.model.dto.message.MessageDTO;
-import com.guanyu.app.service.IMessageService;
+import com.guanyu.app.service.MessageService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 public class MessageController {
 
     @Resource
-    private IMessageService messageService;
+    private MessageService messageService;
 
     /**
      * 获取指定消息
