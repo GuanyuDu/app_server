@@ -3,9 +3,7 @@ package com.guanyu.app.model.miniapp.message;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 
@@ -16,11 +14,18 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-@TableName(value = "message")
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName(value = "mini_message")
 public class MessageDO {
 
     @TableId(type = IdType.AUTO)
     private Long id;
+
+    /**
+     * 用户id
+     */
+    private Long userId;
 
     /**
      * 父级评论id
@@ -28,24 +33,19 @@ public class MessageDO {
     private Long parentId;
 
     /**
-     * 微信用户 OpenID
-     */
-    private String openId;
-
-    /**
      * 评论
      */
-    private String comments;
+    private String comment;
 
     /**
      * 是否置顶: 1: 置顶, 0: 未置顶
      */
-    private Integer top;
+    private Integer topFlag;
 
     /**
      * 点赞数
      */
-    private Integer isLike;
+    private Integer likeNum;
 
     /**
      * 创建时间
@@ -56,4 +56,16 @@ public class MessageDO {
      * 更新时间
      */
     private Date updateTime;
+
+
+    public static MessageDO init(long userId, long parentId, String comment) {
+        MessageDO message = new MessageDO();
+        message.setUserId(userId);
+        message.setParentId(parentId);
+        message.setComment(comment);
+        message.setCreateTime(new Date());
+        message.setLikeNum(0);
+        message.setTopFlag(0);
+        return message;
+    }
 }

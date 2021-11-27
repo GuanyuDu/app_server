@@ -1,4 +1,4 @@
-package com.guanyu.app.model.base;
+package com.guanyu.app.model.dto.base;
 
 import com.guanyu.app.constant.ErrorCode;
 import lombok.Getter;

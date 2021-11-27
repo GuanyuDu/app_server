@@ -22,8 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String id = request.getParameter("id");
-        System.out.printf("[Login Interceptor] preHandle %s%n", id);
+
         return true;
 //        String clientKey = request.getHeader("primary-key");
 //

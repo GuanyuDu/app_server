@@ -1,4 +1,4 @@
-package com.guanyu.app.model.base;
+package com.guanyu.app.model.dto.base;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.Getter;
@@ -19,11 +19,6 @@ public class PageInfo<T> {
     private long currentPage;
 
     /**
-     * total page number
-     */
-    private long pages;
-
-    /**
      * total data number
      */
     private long totalCount;
@@ -33,10 +28,20 @@ public class PageInfo<T> {
      */
     private List<T> data;
 
+
+    public static <T> PageInfo<T> of(long currentPage, long totalCount, List<T> data) {
+        return new PageInfo<>(currentPage, totalCount, data);
+    }
+
+    public PageInfo(long currentPage, long totalCount, List<T> data) {
+        this.currentPage = currentPage;
+        this.totalCount = totalCount;
+        this.data = data;
+    }
+
     public PageInfo(IPage<T> page) {
         this.currentPage = page.getCurrent();
         this.totalCount = page.getTotal();
-        this.pages = page.getPages();
         this.data = page.getRecords();
     }
 }

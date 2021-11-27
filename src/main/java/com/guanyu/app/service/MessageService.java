@@ -1,7 +1,7 @@
 package com.guanyu.app.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.guanyu.app.model.miniapp.message.MessageDO;
+import com.guanyu.app.model.dto.base.PageInfo;
+import com.guanyu.app.model.dto.message.MessageDTO;
 
 /**
  * @author Guanyu
@@ -9,16 +9,26 @@ import com.guanyu.app.model.miniapp.message.MessageDO;
 public interface MessageService {
 
     /**
-     * get all message by page
-     * @param currentPage current page number
-     * @param pageSize per page size
-     * @return message list
+     * 首页消息列表
+     *
+     * @param page  当前页
+     * @param size  页大小
+     * @return      消息列表
      */
-    IPage<MessageDO> getMessages(int currentPage, int pageSize);
+    PageInfo<MessageDTO> getMessages(Long page, Long size);
 
     /**
-     * add new message
-     * @param comment message content
+     * 添加一条新消息
+     *
+     * @param replyId 回复id
+     * @param comment 消息内容
      */
-    void addMessage(String comment);
+    void addMessage(long replyId, String comment);
+
+    /**
+     * 根据id删除消息
+     *
+     * @param id    消息id
+     */
+    void delMessage(long id);
 }
