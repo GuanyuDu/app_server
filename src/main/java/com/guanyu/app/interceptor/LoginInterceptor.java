@@ -2,6 +2,7 @@ package com.guanyu.app.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,15 +19,15 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     private final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
-    private static final String PRIMARY_KEY = "4abef43d8ab28c737f2acfbf78efeb20";
+    @Value("${app.common.secret}")
+    private String appSecret;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         return true;
-//        String clientKey = request.getHeader("primary-key");
-//
-//        if (StringUtils.isNotBlank(clientKey) && clientKey.equals(PRIMARY_KEY)) {
+
+//        if (StringUtils.isNotBlank(clientKey) && clientKey.equals(appSecret)) {
 //            return true;
 //        } else {
 //            logger.info("LoginInterceptor -> proHandle | illegality request | clientKey: {}", clientKey);
