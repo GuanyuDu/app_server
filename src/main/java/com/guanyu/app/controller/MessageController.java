@@ -29,7 +29,7 @@ public class MessageController {
      */
     @GetMapping("/message/{id}")
     public Result<JSONObject> getMessage(@PathVariable Long id) {
-        System.out.println("Get message id: " + id);
+
         return Result.ok();
     }
 
@@ -47,11 +47,9 @@ public class MessageController {
             return Result.fail(ErrorCode.PARAM_TYPE_ERROR);
         }
         try {
-            PageInfo<MessageDTO> messages = messageService.getMessages(page, size);
-            return Result.ok(messages);
+            return Result.ok(messageService.getMessages(page, size));
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
         }
         return Result.fail(ErrorCode.UNKNOWN_ERROR);
     }
@@ -65,7 +63,7 @@ public class MessageController {
     @PostMapping("/message")
     public Result<JSONObject> createMessage(@RequestParam(required = false, defaultValue = "0") Long replyId,
                                             @RequestParam String content) {
-        messageService.addMessage(replyId, content);
+//        messageService.addMessage(replyId, content);
         return Result.ok();
     }
 
@@ -77,7 +75,7 @@ public class MessageController {
      */
     @DeleteMapping("/message/{id}")
     public Result<JSONObject> deleteMessage(@PathVariable Long id) {
-        messageService.delMessage(id);
+//        messageService.delMessage(id);
         return Result.ok();
     }
 

@@ -28,6 +28,15 @@ public class MessageDao {
     }
 
     /**
+     * 获取可见消息总条数
+     *
+     * @return  可见消息总条数
+     */
+    public Long getMessageCount() {
+        return messageMapper.getMessageCount();
+    }
+
+    /**
      * 插入一条新消息
      *
      * @param message 消息体

@@ -15,7 +15,6 @@ import java.util.Date;
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @TableName(value = "mini_message")
 public class MessageDO {
 
