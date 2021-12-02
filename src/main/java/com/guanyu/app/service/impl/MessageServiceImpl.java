@@ -23,8 +23,6 @@ import java.util.stream.Collectors;
 @Service
 public class MessageServiceImpl implements com.guanyu.app.service.MessageService {
 
-    private final Logger logger = LoggerFactory.getLogger(MessageServiceImpl.class);
-
     @Resource
     private UserDao userDao;
 
@@ -34,16 +32,19 @@ public class MessageServiceImpl implements com.guanyu.app.service.MessageService
 
     @Override
     public PageInfo<MessageDTO> getMessages(Long page, Long size) {
+
         long pageSize = Math.min(size, PageCons.DEFAULT_PAGE_SIZE);
         long offset = (page - 1) * pageSize;
+
         List<MessageDO> messages = messageDao.getMessages(offset, pageSize);
+        Long totalCount = messageDao.getMessageCount();
         // the conversion of DO into DTO
         List<MessageDTO> result = messages.stream().map(message -> {
             UserDO userInfo = userDao.getUserInfoById(message.getUserId());
             return MessageDTO.init(message, userInfo);
         }).collect(Collectors.toList());
 
-        return PageInfo.of(page, 10L, result);
+        return PageInfo.of(page, totalCount, result);
     }
 
     @Override

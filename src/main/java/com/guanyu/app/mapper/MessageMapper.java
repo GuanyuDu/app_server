@@ -21,7 +21,15 @@ public interface MessageMapper extends BaseMapper<MessageDO> {
      * @param size      页大小
      * @return          消息集合
      */
-    @Select("select * from mini_message order by top_flag desc, create_time desc limit ${offset}, ${size}")
+    @Select("select * from mini_message where status = 1 order by top_flag desc, create_time desc limit ${offset}, ${size}")
     List<MessageDO> getMessages(@Param("offset") Long offset, @Param("size") Long size);
+
+    /**
+     * 获取可见消息总条数
+     *
+     * @return  可见消息总条数
+     */
+    @Select("select count(*) from mini_message where status = 1")
+    Long getMessageCount();
 
 }
