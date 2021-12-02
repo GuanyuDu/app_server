@@ -19,7 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     private final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
-    @Value("${app.common.secret}")
+    @Value("${app.common.secret:123}")
     private String appSecret;
 
     @Override
