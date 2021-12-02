@@ -24,6 +24,7 @@
 
 # idea configration
 *.iml
+*.MF
 .idea
 target
 META-INF
