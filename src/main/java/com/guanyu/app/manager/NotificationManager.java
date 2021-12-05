@@ -21,10 +21,10 @@ import java.util.Map;
 @Component
 public class NotificationManager {
 
-    @Value("${fei-shu.robot.mini-app.secret}")
+    @Value("${feiShu.robot.secret}")
     private String robotSecret;
 
-    private final String URL = "https://open.feishu.cn/open-apis/bot/v2/hook/" + robotSecret;
+    private final String URL = "https://open.feishu.cn/open-apis/bot/v2/hook/";
 
     /**
      * 发送文字通知给飞书机器人
@@ -39,7 +39,7 @@ public class NotificationManager {
         content.put(FeiShuNotifyTypeEnum.TEXT.value, text);
         requestBody.put("content", content.toJSONString());
 
-        String data = HttpRequest.post(URL, requestBody, Collections.emptyMap()).dataOrNull();
+        String data = HttpRequest.post(URL + robotSecret, requestBody, Collections.emptyMap()).dataOrNull();
         if (StringUtils.isNotEmpty(data)) {
             JSONObject dataObj = JSON.parseObject(data);
             return dataObj != null && dataObj.getInteger("StatusCode") == 0;
@@ -55,7 +55,7 @@ public class NotificationManager {
      * @param link  跳转链接
      * @return      通知结果
      */
-    public boolean feiShuRichTextNotification(String title, String text, String link) {
+    public boolean feiShuRichTextNotification(String title, String text, String showText, String link) {
 
         Map<String, String> requestBody = new HashMap<>(16);
         requestBody.put("msg_type", FeiShuNotifyTypeEnum.POST.value);
@@ -76,7 +76,7 @@ public class NotificationManager {
         if (StringUtils.isNotEmpty(link)) {
             JSONObject linkObj = new JSONObject();
             linkObj.put("tag", "a");
-            linkObj.put("text", "详情");
+            linkObj.put("text", showText);
             linkObj.put("href", link);
             subContents.add(linkObj);
         }
@@ -85,9 +85,10 @@ public class NotificationManager {
         post.put("zh_cn", zhCn);
         requestBody.put("content", content.toJSONString());
 
-        String data = HttpRequest.post(URL, requestBody, Collections.emptyMap()).dataOrNull();
+        String data = HttpRequest.post(URL + robotSecret, requestBody, Collections.emptyMap()).dataOrNull();
         if (StringUtils.isNotEmpty(data)) {
             JSONObject dataObj = JSON.parseObject(data);
+            System.out.println(dataObj);
             return dataObj != null && dataObj.getInteger("StatusCode") == 0;
         }
         return false;
