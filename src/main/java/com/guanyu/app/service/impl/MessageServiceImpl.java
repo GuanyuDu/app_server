@@ -1,19 +1,17 @@
 package com.guanyu.app.service.impl;
 
 import com.guanyu.app.constant.PageCons;
+import com.guanyu.app.manager.NotificationManager;
 import com.guanyu.app.model.dao.MessageDao;
 import com.guanyu.app.model.dao.UserDao;
 import com.guanyu.app.model.dto.base.PageInfo;
 import com.guanyu.app.model.dto.message.MessageDTO;
 import com.guanyu.app.model.miniapp.message.MessageDO;
 import com.guanyu.app.model.miniapp.user.UserDO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -28,6 +26,9 @@ public class MessageServiceImpl implements com.guanyu.app.service.MessageService
 
     @Resource
     private MessageDao messageDao;
+
+    @Resource
+    private NotificationManager notificationManager;
 
 
     @Override
@@ -49,7 +50,11 @@ public class MessageServiceImpl implements com.guanyu.app.service.MessageService
 
     @Override
     public void addMessage(long replyId, String comment) {
+        // 添加一条新消息
         messageDao.addMessage(MessageDO.init(1L, replyId, comment));
+        // 发送通知
+        notificationManager.feiShuRichTextNotification("新消息通知", "消息内容：" + comment,
+                "详情", "https://api.dududu.top/message?page=1&size=10");
     }
 
     @Override

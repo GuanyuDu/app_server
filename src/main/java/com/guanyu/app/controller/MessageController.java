@@ -61,9 +61,9 @@ public class MessageController {
      * @return 操作结果
      */
     @PostMapping("/message")
-    public Result<JSONObject> createMessage(@RequestParam(required = false, defaultValue = "0") Long replyId,
+    public Result<JSONObject> createMessage(@RequestParam(name = "reply_id", required = false, defaultValue = "0") Long replyId,
                                             @RequestParam String content) {
-//        messageService.addMessage(replyId, content);
+        messageService.addMessage(replyId, content);
         return Result.ok();
     }
 

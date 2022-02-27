@@ -47,6 +47,11 @@ public class MessageDO {
     private Integer likeNum;
 
     /**
+     * 消息状态 0-不可见，1-可见
+     */
+    private Integer status;
+
+    /**
      * 创建时间
      */
     private Date createTime;
@@ -65,6 +70,7 @@ public class MessageDO {
         message.setCreateTime(new Date());
         message.setLikeNum(0);
         message.setTopFlag(0);
+        message.setStatus(1);
         return message;
     }
 }
