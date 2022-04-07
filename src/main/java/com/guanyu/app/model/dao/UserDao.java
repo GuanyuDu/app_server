@@ -1,6 +1,6 @@
 package com.guanyu.app.model.dao;
 
-import com.guanyu.app.mapper.UserMapper;
+import com.guanyu.app.model.mapper.UserMapper;
 import com.guanyu.app.model.miniapp.UserDO;
 import org.springframework.stereotype.Component;
 

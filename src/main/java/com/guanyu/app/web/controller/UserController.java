@@ -1,4 +1,4 @@
-package com.guanyu.app.controller;
+package com.guanyu.app.web.controller;
 
 import com.guanyu.app.model.dto.base.Result;
 import org.springframework.web.bind.annotation.*;

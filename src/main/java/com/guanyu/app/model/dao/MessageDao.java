@@ -1,6 +1,6 @@
 package com.guanyu.app.model.dao;
 
-import com.guanyu.app.mapper.MessageMapper;
+import com.guanyu.app.model.mapper.MessageMapper;
 import com.guanyu.app.model.miniapp.MessageDO;
 import org.springframework.stereotype.Component;
 
