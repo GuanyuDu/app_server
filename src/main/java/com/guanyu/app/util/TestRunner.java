@@ -9,6 +9,7 @@ import com.guanyu.app.demo.pattern.TestBuilderPattern;
 import com.guanyu.app.model.miniapp.UserDO;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.slf4j.MDC;
 
 import javax.annotation.Resource;
 import java.io.*;
@@ -59,9 +60,6 @@ public class TestRunner {
 
     public static class AsyncCat implements Runnable {
 
-        @Resource
-        private PageCons pageCons;
-
         @Override
         public void run() {
 //            long testParameter = pageCons.getTestParameter();
@@ -71,9 +69,6 @@ public class TestRunner {
     }
 
     public static class AsyncDog implements Callable<String> {
-
-        @Resource
-        private PageCons pageCons;
 
         @Override
         public String call() throws Exception {

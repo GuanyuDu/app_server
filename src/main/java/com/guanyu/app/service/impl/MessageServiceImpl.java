@@ -4,10 +4,12 @@ import com.guanyu.app.constant.PageCons;
 import com.guanyu.app.manager.NotificationManager;
 import com.guanyu.app.model.dao.MessageDao;
 import com.guanyu.app.model.dao.UserDao;
-import com.guanyu.app.model.dto.base.PageInfo;
 import com.guanyu.app.model.dto.MessageDTO;
+import com.guanyu.app.model.dto.base.PageInfo;
 import com.guanyu.app.model.miniapp.MessageDO;
 import com.guanyu.app.model.miniapp.UserDO;
+import com.guanyu.app.service.MessageService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,8 +20,10 @@ import java.util.stream.Collectors;
  * 消息查询
  * @author Guanyu
  */
+
+@Slf4j
 @Service
-public class MessageServiceImpl implements com.guanyu.app.service.MessageService {
+public class MessageServiceImpl implements MessageService {
 
     @Resource
     private UserDao userDao;
