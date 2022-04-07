@@ -1,7 +1,7 @@
-package com.guanyu.app.model.dto.message;
+package com.guanyu.app.model.dto;
 
-import com.guanyu.app.model.miniapp.message.MessageDO;
-import com.guanyu.app.model.miniapp.user.UserDO;
+import com.guanyu.app.model.miniapp.MessageDO;
+import com.guanyu.app.model.miniapp.UserDO;
 import com.guanyu.app.util.TimeFormatHelper;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,6 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
 
 /**
  * 消息传输对象

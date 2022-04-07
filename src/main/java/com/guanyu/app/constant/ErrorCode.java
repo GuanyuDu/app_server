@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @author v.duguanyu
+ * @author Guanyu
  */
 public enum ErrorCode {
 

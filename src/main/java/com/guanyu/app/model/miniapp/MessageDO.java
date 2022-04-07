@@ -1,4 +1,4 @@
-package com.guanyu.app.model.miniapp.message;
+package com.guanyu.app.model.miniapp;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

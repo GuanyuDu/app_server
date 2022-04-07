@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 /**
- * @author v.duguanyu
+ * @author Guanyu
  */
 public class ExportHelper {
 

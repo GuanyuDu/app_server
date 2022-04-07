@@ -1,56 +1,104 @@
 package com.guanyu.app.util;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.google.common.collect.Collections2;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.common.hash.HashCode;
 import com.google.common.hash.Hashing;
-import com.guanyu.app.model.miniapp.user.UserDO;
-import org.apache.catalina.User;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.guanyu.app.constant.PageCons;
+import com.guanyu.app.demo.pattern.TestBuilderPattern;
+import com.guanyu.app.model.miniapp.UserDO;
+import org.apache.commons.lang3.SerializationUtils;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.springframework.stereotype.Component;
-import org.yaml.snakeyaml.reader.StreamReader;
+import org.slf4j.MDC;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.concurrent.*;
+import java.util.function.*;
 
 /**
  * test class
  *
- * @author v.duguanyu
+ * @author Guanyu
  */
-@Component
 public class TestRunner {
 
-    @PostConstruct
-    public void init() {
+    private static final int CORE_POOL_SIZE = 2;
+    private static final int MAX_POOL_SIZE = 10;
+    private static final int KEEP_ALIVE_TIME = 1000;
 
-    }
+    private static final List<Future<?>> FUTURES = new ArrayList<>(64);
+
+    private static ThreadPoolExecutor executor;
 
     /**
      * 测试方法入口
-     * <p>
-     * 1. 计算表尾缀：printTableSuffix()
-     * 2. SQL生成工具：sqlGenerator()
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+
+        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("demo-pool-%d").build();
+        executor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<>(128), threadFactory, new ThreadPoolExecutor.AbortPolicy());
+
+        FUTURES.add(executor.submit(new Monitor()));
+        FUTURES.add(executor.submit(new AsyncCat()));
+        FUTURES.add(executor.submit(new AsyncDog()));
+
+        Thread.sleep(1000);
+
+        FUTURES.add(executor.submit(new AsyncCat()));
+
+        executor.shutdown();
+
+        TestBuilderPattern john = new TestBuilderPattern.Builder().name("john").age(18).habit("smoke").build();
+        System.out.println(JSON.toJSONString(john));
+    }
+
+    public static class AsyncCat implements Runnable {
+
+        @Override
+        public void run() {
+//            long testParameter = pageCons.getTestParameter();
+            System.out.println("[Cat] get static parameter = " + PageCons.DEFAULT_PAGE_SIZE
+                    + ", get testParameter = " + 0);
+        }
+    }
+
+    public static class AsyncDog implements Callable<String> {
+
+        @Override
+        public String call() throws Exception {
+            System.out.println("[Dog] start modify parameters.");
+//            pageCons.setTestParameter(pageCons.getTestParameter() + 6);
+//            PageCons.DEFAULT_PAGE_SIZE += 8;
+
+            System.out.println("[Dog] modify completed.");
+            return "Completed";
+        }
+    }
+
+    public static class Monitor implements Runnable {
+
+        @Override
+        public void run() {
+            for (int i = 0; i < 20; i++) {
+                System.out.println("[Monitor] future size = " + FUTURES.size());
+                try {
+                    Thread.sleep(100);
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void case1() throws IOException {
         // call some method
-//        Optional<UserDO> user = getUser(123L);
-//        UserDO userDO1 = user.orElse(new UserDO());
-//        System.out.println(userDO1);
-//        if (user.isPresent()) {
-//            UserDO userDO = user.get();
-//        }
         Set<Long> result = new HashSet<>();
 
         FileReader reader = new FileReader("C:\\Users\\Guanyu\\Desktop\\demo.log");
@@ -93,8 +141,6 @@ public class TestRunner {
             outputStream = new FileOutputStream(file);
             workbook.write(outputStream);
             workbook.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -106,22 +152,6 @@ public class TestRunner {
                 }
             }
         }
-    }
-
-    /**
-     * 切面测试方法
-     *
-     * @return String result
-     */
-    public static void testFunction() {
-        String cbIdList = "123456 \n 893224\n390232\n2342342\n390232";
-        String str = "8d4905cd931b55d8b470c9fcdb89ac07";
-        String[] cbIds = cbIdList.split("\n");
-        for (int i = 0; i < cbIds.length; i++) {
-            cbIds[i] = cbIds[i].trim();
-        }
-        System.out.println(str.length());
-        System.out.println(String.join(",", cbIds));
     }
 
     /**

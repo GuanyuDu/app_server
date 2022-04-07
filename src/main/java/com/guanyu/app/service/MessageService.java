@@ -1,7 +1,7 @@
 package com.guanyu.app.service;
 
 import com.guanyu.app.model.dto.base.PageInfo;
-import com.guanyu.app.model.dto.message.MessageDTO;
+import com.guanyu.app.model.dto.MessageDTO;
 
 /**
  * @author Guanyu
