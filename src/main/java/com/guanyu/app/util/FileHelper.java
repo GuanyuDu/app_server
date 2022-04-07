@@ -6,7 +6,7 @@ import java.io.File;
 
 /**
  * 文件操作工具类
- * @author v.duguanyu
+ * @author Guanyu
  */
 public class FileHelper {
 

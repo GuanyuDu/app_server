@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @author v.duguanyu
+ * @author Guanyu
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

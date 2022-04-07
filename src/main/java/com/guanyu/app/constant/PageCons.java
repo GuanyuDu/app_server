@@ -10,5 +10,6 @@ public final class PageCons {
     /**
      * 默认页大小
      */
-    public static final long DEFAULT_PAGE_SIZE = 10;
+    public static final long DEFAULT_PAGE_SIZE = 10L;
+
 }

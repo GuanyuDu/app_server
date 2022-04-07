@@ -1,7 +1,7 @@
 package com.guanyu.app.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.guanyu.app.model.miniapp.message.MessageDO;
+import com.guanyu.app.model.miniapp.MessageDO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 

@@ -5,9 +5,9 @@ import com.guanyu.app.manager.NotificationManager;
 import com.guanyu.app.model.dao.MessageDao;
 import com.guanyu.app.model.dao.UserDao;
 import com.guanyu.app.model.dto.base.PageInfo;
-import com.guanyu.app.model.dto.message.MessageDTO;
-import com.guanyu.app.model.miniapp.message.MessageDO;
-import com.guanyu.app.model.miniapp.user.UserDO;
+import com.guanyu.app.model.dto.MessageDTO;
+import com.guanyu.app.model.miniapp.MessageDO;
+import com.guanyu.app.model.miniapp.UserDO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

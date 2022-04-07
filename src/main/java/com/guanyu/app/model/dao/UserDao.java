@@ -1,7 +1,7 @@
 package com.guanyu.app.model.dao;
 
 import com.guanyu.app.mapper.UserMapper;
-import com.guanyu.app.model.miniapp.user.UserDO;
+import com.guanyu.app.model.miniapp.UserDO;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;

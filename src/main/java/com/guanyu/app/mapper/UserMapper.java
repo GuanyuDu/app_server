@@ -2,7 +2,7 @@ package com.guanyu.app.mapper;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.guanyu.app.model.miniapp.user.UserDO;
+import com.guanyu.app.model.miniapp.UserDO;
 
 /**
  * 用户表 mapper

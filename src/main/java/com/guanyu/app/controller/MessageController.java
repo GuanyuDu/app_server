@@ -2,9 +2,7 @@ package com.guanyu.app.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.guanyu.app.constant.ErrorCode;
-import com.guanyu.app.model.dto.base.PageInfo;
 import com.guanyu.app.model.dto.base.Result;
-import com.guanyu.app.model.dto.message.MessageDTO;
 import com.guanyu.app.service.MessageService;
 import org.springframework.web.bind.annotation.*;
 

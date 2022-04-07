@@ -1,4 +1,4 @@
-package com.guanyu.app.model.dto.user;
+package com.guanyu.app.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;

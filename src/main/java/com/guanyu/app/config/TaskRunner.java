@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
- * @author v.duguanyu
+ * @author Guanyu
  */
 @Component
 public class TaskRunner implements ApplicationRunner {
