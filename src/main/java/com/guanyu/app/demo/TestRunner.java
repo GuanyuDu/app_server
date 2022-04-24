@@ -1,4 +1,4 @@
-package com.guanyu.app.util;
+package com.guanyu.app.demo;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.hash.HashCode;

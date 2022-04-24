@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class HttpRequest {
 
-    private static volatile OkHttpClient client = new OkHttpClient.Builder()
+    private static final OkHttpClient CLIENT = new OkHttpClient.Builder()
             .callTimeout(5, TimeUnit.SECONDS)
             .connectTimeout(5, TimeUnit.SECONDS)
             .readTimeout(5, TimeUnit.SECONDS).build();
@@ -43,7 +43,7 @@ public class HttpRequest {
         }
         Request request = builder.url(url).get().build();
         try {
-            Response response = client.newCall(request).execute();
+            Response response = CLIENT.newCall(request).execute();
             int code = response.code();
             String message = response.message();
             String body = Objects.requireNonNull(response.body()).string();
@@ -83,7 +83,7 @@ public class HttpRequest {
         }
         Request request = builder.url(url).post(form.build()).build();
         try {
-            Response response = client.newCall(request).execute();
+            Response response = CLIENT.newCall(request).execute();
             int code = response.code();
             String message = response.message();
             String body = Objects.requireNonNull(response.body()).string();
