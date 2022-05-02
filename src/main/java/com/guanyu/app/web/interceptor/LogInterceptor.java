@@ -1,4 +1,4 @@
-package com.guanyu.app.interceptor;
+package com.guanyu.app.web.interceptor;
 
 import org.slf4j.MDC;
 import org.springframework.web.servlet.HandlerInterceptor;

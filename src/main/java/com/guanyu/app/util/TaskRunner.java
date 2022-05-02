@@ -1,4 +1,4 @@
-package com.guanyu.app.config;
+package com.guanyu.app.util;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

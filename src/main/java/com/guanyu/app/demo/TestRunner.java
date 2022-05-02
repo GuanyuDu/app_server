@@ -1,4 +1,4 @@
-package com.guanyu.app.util;
+package com.guanyu.app.demo;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.hash.HashCode;
@@ -33,15 +33,13 @@ public class TestRunner {
 
     private static final List<Future<?>> FUTURES = new ArrayList<>(64);
 
-    private static ThreadPoolExecutor executor;
-
     /**
      * 测试方法入口
      */
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("demo-pool-%d").build();
-        executor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MILLISECONDS,
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<>(128), threadFactory, new ThreadPoolExecutor.AbortPolicy());
 
         FUTURES.add(executor.submit(new Monitor()));

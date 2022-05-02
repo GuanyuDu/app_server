@@ -1,4 +1,4 @@
-package com.guanyu.app.mapper;
+package com.guanyu.app.model.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.guanyu.app.model.miniapp.MessageDO;

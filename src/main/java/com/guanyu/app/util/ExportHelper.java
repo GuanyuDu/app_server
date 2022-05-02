@@ -1,8 +1,10 @@
 package com.guanyu.app.util;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelReader;
+import com.alibaba.excel.read.builder.ExcelReaderBuilder;
+
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.util.List;
 
 /**
@@ -11,19 +13,14 @@ import java.util.List;
 public class ExportHelper {
 
     public static File createFile(String fileName, String path) {
-        return new File("");
+        return new File(path + File.separator + fileName);
     }
 
-    public <T> void writeFile(List<T> data) throws FileNotFoundException {
+    public static List writeFile(File file) {
+        ExcelReader reader = EasyExcel.read(file).build();
+    }
 
-        File file = createFile("", "");
-        FileOutputStream outputStream = new FileOutputStream(file);
-        for (Object row : data) {
-            if (row instanceof Integer) {
+    public void writeFiles(List<File> files) {
 
-            } else if (row instanceof Long) {
-
-            }
-        }
     }
 }
