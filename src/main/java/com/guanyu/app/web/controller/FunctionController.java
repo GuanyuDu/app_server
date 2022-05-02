@@ -28,8 +28,8 @@ public class FunctionController {
         return Result.ok("Sorry, no ideas!");
     }
 
-    @GetMapping("/tiktok_transform")
-    public Result<List<String>> tikTokShareLinkTransform(@RequestParam("share_link") String shareLink) {
-        return subFunctionService.tikTokShareLinkTransform(shareLink);
+    @GetMapping("/link_transform")
+    public Result<List<String>> shareLinkTransform(@RequestParam("share_link") String shareLink) {
+        return subFunctionService.shareLinkTransform(shareLink);
     }
 }
