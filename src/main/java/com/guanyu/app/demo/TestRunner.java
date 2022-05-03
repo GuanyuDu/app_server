@@ -7,18 +7,15 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.guanyu.app.constant.PageCons;
 import com.guanyu.app.demo.pattern.TestBuilderPattern;
 import com.guanyu.app.model.miniapp.UserDO;
-import org.apache.commons.lang3.SerializationUtils;
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.slf4j.MDC;
 
-import javax.annotation.Resource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.function.*;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * test class
@@ -133,24 +130,24 @@ public class TestRunner {
         return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
 
-    private void writeFile(SXSSFWorkbook workbook, File file) {
-        FileOutputStream outputStream = null;
-        try {
-            outputStream = new FileOutputStream(file);
-            workbook.write(outputStream);
-            workbook.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (outputStream != null) {
-                try {
-                    outputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+//    private void writeFile(SXSSFWorkbook workbook, File file) {
+//        FileOutputStream outputStream = null;
+//        try {
+//            outputStream = new FileOutputStream(file);
+//            workbook.write(outputStream);
+//            workbook.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (outputStream != null) {
+//                try {
+//                    outputStream.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
     /**
      * SQL 生成工具 (待优化)
