@@ -29,19 +29,18 @@ public class CmsController {
         }
         for (MultipartFile file : uploadFiles) {
 
-            InputStream inputStream = null;
-            FileOutputStream outputStream = null;
-            try {
-                String originalName = file.getOriginalFilename();
-                inputStream = file.getInputStream();
-                File localFile = new File("F:\\Temp\\" + (StringUtils.isNotEmpty(originalName) ? originalName : "temp_file_name"));
+            String originalName = file.getOriginalFilename();
+            File localFile = new File("F:\\Temp\\" + (StringUtils.isNotEmpty(originalName) ? originalName : "temp_file_name"));
+            try (
+                InputStream inputStream = file.getInputStream();
+                FileOutputStream outputStream = new FileOutputStream(localFile)
+            ) {
                 if (!localFile.exists()) {
                     boolean isCreated = localFile.createNewFile();
                     if (!isCreated) {
                         System.out.println("File create failed.");
                     }
                 }
-                outputStream = new FileOutputStream(localFile);
                 // write file to disc
                 byte[] data = new byte[1024];
                 while (inputStream.read(data) != -1) {
@@ -50,19 +49,6 @@ public class CmsController {
 
             } catch (IOException e) {
                 e.printStackTrace();
-
-            } finally {
-                try {
-                    if (inputStream != null) {
-                        inputStream.close();
-                    }
-                    if (outputStream != null) {
-                        outputStream.close();
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
         return Result.ok();

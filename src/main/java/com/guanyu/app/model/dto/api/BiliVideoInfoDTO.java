@@ -12,25 +12,30 @@ import java.util.List;
  * @author Guanyu
  */
 @Getter
-@Setter
 @ToString
 public class BiliVideoInfoDTO {
 
     /**
      * 视频标题
      */
-    private String title;
+    private final String title;
     /**
      * 视频描述
      */
-    private String desc;
+    private final String desc;
     /**
      * 视频封面
      */
-    private String cover;
+    private final String cover;
     /**
      * 视频时长
      */
-    private List<BiliVideoItemDTO> list;
+    private final List<BiliVideoItemDTO> list;
 
+    public BiliVideoInfoDTO(String title, String desc, String cover, List<BiliVideoItemDTO> list) {
+        this.title = title;
+        this.desc = desc;
+        this.cover = cover;
+        this.list = list;
+    }
 }

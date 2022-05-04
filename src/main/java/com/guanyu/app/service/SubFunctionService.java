@@ -11,6 +11,7 @@ import com.guanyu.app.constant.ErrorCode;
 import com.guanyu.app.model.dto.api.BiliVideoInfoDTO;
 import com.guanyu.app.model.dto.api.BiliVideoItemDTO;
 import com.guanyu.app.model.dto.api.TiktokVideoInfoDTO;
+import com.guanyu.app.model.dto.api.VideoInfoDTO;
 import com.guanyu.app.model.dto.base.Result;
 import com.guanyu.app.util.log.Logs;
 import com.guanyu.app.util.net.HttpRequest;
@@ -50,7 +51,7 @@ public class SubFunctionService {
      * @param shareLink 分享链接
      * @return {@link List} 下载链接集合
      */
-    public Result<List<String>> shareLinkTransform(String shareLink) {
+    public Result<VideoInfoDTO> shareLinkTransform(String shareLink) {
         if (!shareLink.contains(CommonCons.HTTPS)) {
             return Result.fail(ErrorCode.PARAM_TYPE_ERROR);
         }
@@ -77,11 +78,10 @@ public class SubFunctionService {
                         String data = res.getString("data");
                         if (isTiktok) {
                             TiktokVideoInfoDTO videoInfo = JSON.parseObject(data, TiktokVideoInfoDTO.class);
-                            return Result.ok(Collections.singletonList(videoInfo.getUrl()));
+                            return Result.ok(new VideoInfoDTO(videoInfo));
                         }
                         BiliVideoInfoDTO videoInfo = JSON.parseObject(data, BiliVideoInfoDTO.class);
-                        return Result.ok(videoInfo.getList().parallelStream()
-                                .map(BiliVideoItemDTO::getUrl).collect(Collectors.toList()));
+                        return Result.ok(new VideoInfoDTO(videoInfo));
                     }
                 }
 

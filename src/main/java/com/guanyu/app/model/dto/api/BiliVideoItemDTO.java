@@ -12,36 +12,45 @@ import java.util.List;
  * @author Guanyu
  */
 @Getter
-@Setter
 @ToString
 public class BiliVideoItemDTO {
 
     /**
      * 视频分片标题
      */
-    private String title;
+    private final String title;
     /**
      * 视频分片时长
      */
-    private Long duration;
+    private final Long duration;
     /**
      * 视频分片时长格式化
      */
-    private String durationFormat;
+    private final String durationFormat;
     /**
      * 视频分片宽度
      */
-    private Integer width;
+    private final Integer width;
     /**
      * 视频分片高度
      */
-    private Integer height;
+    private final Integer height;
     /**
      * 视频分片分辨率
      */
-    private List<String> accept;
+    private final List<String> accept;
     /**
      * 视频分片下载链接
      */
-    private String url;
+    private final String url;
+
+    public BiliVideoItemDTO(String title, Long duration, String durationFormat, Integer width, Integer height, List<String> accept, String url) {
+        this.title = title;
+        this.duration = duration;
+        this.durationFormat = durationFormat;
+        this.width = width;
+        this.height = height;
+        this.accept = accept;
+        this.url = url;
+    }
 }

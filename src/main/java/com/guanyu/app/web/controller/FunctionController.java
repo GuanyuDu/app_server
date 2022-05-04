@@ -1,5 +1,6 @@
 package com.guanyu.app.web.controller;
 
+import com.guanyu.app.model.dto.api.VideoInfoDTO;
 import com.guanyu.app.model.dto.base.Result;
 import com.guanyu.app.service.SubFunctionService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,7 @@ public class FunctionController {
     }
 
     @GetMapping("/link_transform")
-    public Result<List<String>> shareLinkTransform(@RequestParam("share_link") String shareLink) {
+    public Result<VideoInfoDTO> shareLinkTransform(@RequestParam("share_link") String shareLink) {
         return subFunctionService.shareLinkTransform(shareLink);
     }
 }
