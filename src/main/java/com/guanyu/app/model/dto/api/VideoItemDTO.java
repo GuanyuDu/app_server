@@ -1,10 +1,14 @@
 package com.guanyu.app.model.dto.api;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
  * @author Guanyu
  */
+@Getter
+@Setter
 @ToString
 public class VideoItemDTO {
 

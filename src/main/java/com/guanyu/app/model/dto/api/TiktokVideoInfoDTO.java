@@ -10,45 +10,55 @@ import lombok.ToString;
  * @author Guanyu
  */
 @Getter
-@Setter
 @ToString
 public class TiktokVideoInfoDTO {
 
     /**
      * 视频标题
      */
-    private String title;
+    private final String title;
     /**
      * 视频封面
      */
-    private String cover;
+    private final String cover;
     /**
      * 视频动态封面
      */
-    private String coverDynamic;
+    private final String coverDynamic;
     /**
      * 视频时长
      */
-    private Long duration;
+    private final Long duration;
     /**
      * 视频时长格式化
      */
-    private String durationFormat;
+    private final String durationFormat;
     /**
      * 视频宽度
      */
-    private Integer width;
+    private final Integer width;
     /**
      * 视频高度
      */
-    private Integer height;
+    private final Integer height;
     /**
      * 视频分辨率
      */
-    private String accept;
+    private final String accept;
     /**
      * 视频下载链接
      */
-    private String url;
+    private final String url;
 
+    public TiktokVideoInfoDTO(String title, String cover, String coverDynamic, Long duration, String durationFormat, Integer width, Integer height, String accept, String url) {
+        this.title = title;
+        this.cover = cover;
+        this.coverDynamic = coverDynamic;
+        this.duration = duration;
+        this.durationFormat = durationFormat;
+        this.width = width;
+        this.height = height;
+        this.accept = accept;
+        this.url = url;
+    }
 }

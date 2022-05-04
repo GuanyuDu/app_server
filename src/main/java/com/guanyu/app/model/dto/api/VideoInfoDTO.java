@@ -1,5 +1,7 @@
 package com.guanyu.app.model.dto.api;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.ArrayList;
@@ -9,23 +11,25 @@ import java.util.List;
 /**
  * @author Guanyu
  */
+@Getter
+@Setter
 @ToString
 public class VideoInfoDTO {
 
     /**
      * 视频标题
      */
-    private final String title;
+    private String title;
 
     /**
      * 视频封面
      */
-    private final String cover;
+    private String cover;
 
     /**
      * 视频分片
      */
-    private final List<VideoItemDTO> list;
+    private List<VideoItemDTO> list;
 
 
     public VideoInfoDTO(BiliVideoInfoDTO biliVideo) {
