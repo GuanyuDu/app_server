@@ -39,57 +39,9 @@ public class TestRunner {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<>(128), threadFactory, new ThreadPoolExecutor.AbortPolicy());
 
-        FUTURES.add(executor.submit(new Monitor()));
-        FUTURES.add(executor.submit(new AsyncCat()));
-        FUTURES.add(executor.submit(new AsyncDog()));
-
         Thread.sleep(1000);
 
-        FUTURES.add(executor.submit(new AsyncCat()));
-
         executor.shutdown();
-
-        TestBuilderPattern john = new TestBuilderPattern.Builder().name("john").age(18).habit("smoke").build();
-        System.out.println(JSON.toJSONString(john));
-    }
-
-    public static class AsyncCat implements Runnable {
-
-        @Override
-        public void run() {
-//            long testParameter = pageCons.getTestParameter();
-            System.out.println("[Cat] get static parameter = " + PageCons.DEFAULT_PAGE_SIZE
-                    + ", get testParameter = " + 0);
-        }
-    }
-
-    public static class AsyncDog implements Callable<String> {
-
-        @Override
-        public String call() throws Exception {
-            System.out.println("[Dog] start modify parameters.");
-//            pageCons.setTestParameter(pageCons.getTestParameter() + 6);
-//            PageCons.DEFAULT_PAGE_SIZE += 8;
-
-            System.out.println("[Dog] modify completed.");
-            return "Completed";
-        }
-    }
-
-    public static class Monitor implements Runnable {
-
-        @Override
-        public void run() {
-            for (int i = 0; i < 20; i++) {
-                System.out.println("[Monitor] future size = " + FUTURES.size());
-                try {
-                    Thread.sleep(100);
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 
     public void case1() throws IOException {
@@ -128,73 +80,6 @@ public class TestRunner {
     static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
         Map<Object, Boolean> seen = new ConcurrentHashMap<>(32);
         return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
-    }
-
-//    private void writeFile(SXSSFWorkbook workbook, File file) {
-//        FileOutputStream outputStream = null;
-//        try {
-//            outputStream = new FileOutputStream(file);
-//            workbook.write(outputStream);
-//            workbook.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (outputStream != null) {
-//                try {
-//                    outputStream.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-
-    /**
-     * SQL 生成工具 (待优化)
-     */
-    private static void sqlGenerator() {
-
-        String fileNamePrefix = "export_";
-        String time = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
-
-        File file = new File("F:\\create_sql\\" + fileNamePrefix + time + ".sql");
-        FileOutputStream outputStream = null;
-        try {
-            if (!file.exists()) {
-                System.out.println("File not exists, created " + fileNamePrefix + time + "...");
-                if (file.createNewFile()) {
-                    System.out.println("Create file success!");
-                } else {
-                    System.out.println("Create failed, exit!");
-                    return;
-                }
-            }
-            outputStream = new FileOutputStream(file);
-
-            String sql = "ALTER TABLE `change_log_%s` MODIFY COLUMN `distribution_type` tinyint(4) NULL COMMENT '0-默认 1-高级' AFTER `distribution_status`;";
-            int order = 1;
-            for (int i = 0; i < 100; i++) {
-                String cbId = "9000388000300" + i;
-                Integer hashCode = splitTableGenerator(cbId);
-                outputStream.write(String.format(sql, i).getBytes());
-                outputStream.write("\n".getBytes());
-                order++;
-            }
-
-        } catch (FileNotFoundException e) {
-            System.out.println("[Attention] file not found");
-        } catch (IOException e) {
-            System.out.println("[Attention] io exception");
-        } finally {
-            if (outputStream != null) {
-                try {
-                    outputStream.flush();
-                    outputStream.close();
-                } catch (IOException e) {
-                    System.out.println("[Attention] io exception");
-                }
-            }
-        }
     }
 
     /**

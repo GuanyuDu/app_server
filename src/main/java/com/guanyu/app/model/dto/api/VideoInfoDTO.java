@@ -1,5 +1,6 @@
 package com.guanyu.app.model.dto.api;
 
+import com.guanyu.app.constant.CommonCons;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,6 +28,11 @@ public class VideoInfoDTO {
     private String cover;
 
     /**
+     * 视频来源：bili or tikTok
+     */
+    private String source;
+
+    /**
      * 视频分片
      */
     private List<VideoItemDTO> list;
@@ -35,6 +41,7 @@ public class VideoInfoDTO {
     public VideoInfoDTO(BiliVideoInfoDTO biliVideo) {
         this.title = biliVideo.getTitle();
         this.cover = biliVideo.getCover();
+        this.source = CommonCons.BILI_BILI;
         this.list = new ArrayList<>(16);
         for (BiliVideoItemDTO item : biliVideo.getList()) {
             this.list.add(new VideoItemDTO(item));
@@ -44,6 +51,7 @@ public class VideoInfoDTO {
     public VideoInfoDTO(TiktokVideoInfoDTO tiktokVideo) {
         this.title = tiktokVideo.getTitle();
         this.cover = tiktokVideo.getCover();
+        this.source = CommonCons.DOU_YIN;
         this.list = Collections.singletonList(new VideoItemDTO(tiktokVideo));
     }
 }

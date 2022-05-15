@@ -7,6 +7,7 @@ import lombok.ToString;
  */
 @ToString
 public class TestBuilderPattern {
+
     public final String name;
     public final transient int age;
     public final String habit;
