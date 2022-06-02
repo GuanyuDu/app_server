@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,8 +15,8 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-@TableName(value = "mini_user")
-public class UserDO {
+@TableName(value = "user")
+public class UserDO extends BaseDO {
 
     @TableId(type = IdType.AUTO)
     private Long id;
@@ -42,13 +41,4 @@ public class UserDO {
      */
     private Integer sex;
 
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
 }

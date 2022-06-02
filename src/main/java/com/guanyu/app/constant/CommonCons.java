@@ -5,6 +5,8 @@ package com.guanyu.app.constant;
  */
 public interface CommonCons {
 
+    String DOMAIN = "";
+
     /**
      * http 字符串常量
      */

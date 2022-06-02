@@ -3,6 +3,7 @@ package com.guanyu.app.web.controller;
 import com.guanyu.app.model.dto.api.VideoInfoDTO;
 import com.guanyu.app.model.dto.base.Result;
 import com.guanyu.app.service.SubFunctionService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +17,7 @@ import java.util.List;
  *
  * @author Guanyu
  */
+@Tag(name = "功能相关接口", description = "功能列中使用到的所有接口")
 @RestController
 @RequestMapping("/function")
 public class FunctionController {

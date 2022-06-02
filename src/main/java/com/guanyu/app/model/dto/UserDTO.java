@@ -1,17 +1,20 @@
 package com.guanyu.app.model.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.alibaba.excel.annotation.ExcelProperty;
+import lombok.*;
 
 /**
  * 用户信息传输对象
  *
  * @author Guanyu
  */
-@Getter
-@Setter
-@ToString
+@Data
+@AllArgsConstructor
 public class UserDTO {
 
+    @ExcelProperty("User_Name")
+    private String username;
+
+    @ExcelProperty("Age")
+    private String age;
 }

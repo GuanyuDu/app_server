@@ -3,17 +3,19 @@ package com.guanyu.app.demo;
 import com.alibaba.fastjson.JSON;
 import com.google.common.hash.HashCode;
 import com.google.common.hash.Hashing;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.guanyu.app.constant.PageCons;
-import com.guanyu.app.demo.pattern.TestBuilderPattern;
+import com.guanyu.app.config.TestConfig;
 import com.guanyu.app.model.miniapp.UserDO;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -22,6 +24,7 @@ import java.util.function.Predicate;
  *
  * @author Guanyu
  */
+@Component
 public class TestRunner {
 
     private static final int CORE_POOL_SIZE = 2;
@@ -30,18 +33,27 @@ public class TestRunner {
 
     private static final List<Future<?>> FUTURES = new ArrayList<>(64);
 
+    @Resource
+    private TestConfig testConfig;
+
+    @PostConstruct
+    private void init() {
+        System.out.println(testConfig.data);
+    }
+
     /**
      * 测试方法入口
      */
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("demo-pool-%d").build();
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<>(128), threadFactory, new ThreadPoolExecutor.AbortPolicy());
+//        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("demo-pool-%d").build();
+//        ThreadPoolExecutor executor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MILLISECONDS,
+//                new LinkedBlockingQueue<>(128), threadFactory, new ThreadPoolExecutor.AbortPolicy());
+//
+//        Thread.sleep(1000);
+//
+//        executor.shutdown();
 
-        Thread.sleep(1000);
-
-        executor.shutdown();
     }
 
     public void case1() throws IOException {

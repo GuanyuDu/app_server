@@ -4,10 +4,7 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Collections2;
 import com.guanyu.app.constant.ErrorCode;
 import com.guanyu.app.util.log.Logs;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.*;
 import org.springframework.util.Assert;
 
 import java.io.IOException;
@@ -23,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class HttpRequest {
 
     private static final OkHttpClient CLIENT = new OkHttpClient.Builder()
+            .certificatePinner(new CertificatePinner.Builder().add("api.dududu.top", "").build())
             .callTimeout(5, TimeUnit.SECONDS)
             .connectTimeout(5, TimeUnit.SECONDS)
             .readTimeout(5, TimeUnit.SECONDS).build();

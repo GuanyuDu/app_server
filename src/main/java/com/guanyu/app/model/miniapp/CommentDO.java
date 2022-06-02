@@ -5,18 +5,20 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
- * 信息实体
+ * 评论表
+ *
  * @author Guanyu
  */
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-@TableName(value = "mini_message")
-public class MessageDO {
+@TableName(value = "comment")
+public class CommentDO extends BaseDO {
 
     @TableId(type = IdType.AUTO)
     private Long id;
@@ -51,26 +53,16 @@ public class MessageDO {
      */
     private Integer status;
 
-    /**
-     * 创建时间
-     */
-    private Date createTime;
 
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-
-    public static MessageDO init(long userId, long parentId, String comment) {
-        MessageDO message = new MessageDO();
+    public static CommentDO init(long userId, long parentId, String comment) {
+        CommentDO message = new CommentDO();
         message.setUserId(userId);
         message.setParentId(parentId);
         message.setComment(comment);
-        message.setCreateTime(new Date());
         message.setLikeNum(0);
         message.setTopFlag(0);
         message.setStatus(1);
+
         return message;
     }
 }

@@ -1,6 +1,6 @@
 package com.guanyu.app.model.dto;
 
-import com.guanyu.app.model.miniapp.MessageDO;
+import com.guanyu.app.model.miniapp.CommentDO;
 import com.guanyu.app.model.miniapp.UserDO;
 import com.guanyu.app.util.TimeFormatHelper;
 import lombok.Getter;
@@ -18,7 +18,7 @@ import java.time.ZoneId;
 @Getter
 @Setter
 @ToString
-public class MessageDTO {
+public class CommentDTO {
 
     /**
      * 昵称
@@ -45,22 +45,20 @@ public class MessageDTO {
      */
     private Integer likeNum;
 
-
     /**
      * 创建时间
      */
     private String createTime;
 
 
-    public static MessageDTO init(MessageDO messageDO, UserDO user) {
-        MessageDTO message = new MessageDTO();
+    public static CommentDTO init(CommentDO commentDO, UserDO user) {
+        CommentDTO message = new CommentDTO();
         message.setNickname(user.getNickname());
         message.setAvatar(user.getAvatar());
-        message.setComment(messageDO.getComment());
-        message.setTopFlag(messageDO.getTopFlag());
-        message.setLikeNum(messageDO.getLikeNum());
-        message.setCreateTime(TimeFormatHelper.STANDARD.format(LocalDateTime
-                .ofInstant(messageDO.getCreateTime().toInstant(), ZoneId.systemDefault())));
+        message.setComment(commentDO.getComment());
+        message.setTopFlag(commentDO.getTopFlag());
+        message.setLikeNum(commentDO.getLikeNum());
+        message.setCreateTime(TimeFormatHelper.STANDARD.format(commentDO.getCreateTime()));
         return message;
     }
 }
