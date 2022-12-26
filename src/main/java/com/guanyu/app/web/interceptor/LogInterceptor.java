@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 /**
+ * 日志拦截器
+ *
  * @author Guanyu
  */
 public class LogInterceptor implements HandlerInterceptor {

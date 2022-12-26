@@ -10,6 +10,8 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 /**
+ * 签名校验切面
+ *
  * @author Guanyu
  */
 @Aspect

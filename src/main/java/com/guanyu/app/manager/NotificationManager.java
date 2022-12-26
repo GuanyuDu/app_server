@@ -21,7 +21,7 @@ import java.util.Map;
 @Component
 public class NotificationManager {
 
-    @Value("${feiShu.robot.secret}")
+    @Value("${fei-shu.robot.secret}")
     private String robotSecret;
 
     private final String URL = "https://open.feishu.cn/open-apis/bot/v2/hook/";

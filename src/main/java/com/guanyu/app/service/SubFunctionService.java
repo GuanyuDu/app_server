@@ -6,10 +6,12 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.guanyu.app.constant.CommonCons;
 import com.guanyu.app.constant.ErrorCode;
 import com.guanyu.app.model.dto.api.BiliVideoInfoDTO;
 import com.guanyu.app.model.dto.api.BiliVideoItemDTO;
 import com.guanyu.app.model.dto.api.TiktokVideoInfoDTO;
+import com.guanyu.app.model.dto.api.VideoInfoDTO;
 import com.guanyu.app.model.dto.base.Result;
 import com.guanyu.app.util.log.Logs;
 import com.guanyu.app.util.net.HttpRequest;
@@ -33,10 +35,10 @@ public class SubFunctionService {
     /**
      * 分享链接转换基础链接地址
      */
-    @Value("#{${third-part.domain} + '/api/%s/video'}")
-    private String baseUrl;
+    @Value("${third-part.domain}")
+    private String domain;
 
-    @Value("${third-part.app-id}")
+    @Value("${third-part.appid}")
     private String appId;
 
     @Value("${third-part.app-secret}")
@@ -49,16 +51,22 @@ public class SubFunctionService {
      * @param shareLink 分享链接
      * @return {@link List} 下载链接集合
      */
-    public Result<List<String>> shareLinkTransform(String shareLink) {
+    public Result<VideoInfoDTO> shareLinkTransform(String shareLink) {
+        if (!shareLink.contains(CommonCons.HTTPS)) {
+            return Result.fail(ErrorCode.PARAM_TYPE_ERROR);
+        }
         // 判断当前分享链接是抖音还是哔哩哔哩，构建请求链接
-        boolean isTiktok = shareLink.contains("douyin");
-        String url = String.format(baseUrl, isTiktok ? "douyin" : "bilibili");
+        boolean isTiktok = shareLink.contains(CommonCons.DOU_YIN);
+        String baseUrl = domain + "/api/%s/video";
+        String url = String.format(baseUrl, isTiktok ? CommonCons.DOU_YIN : CommonCons.BILI_BILI);
+
         Map<String, String> params = new HashMap<>(16);
         params.put("app_id", appId);
         params.put("app_secret", appSecret);
-        params.put("url", Base64.getEncoder().encodeToString(shareLink.getBytes(StandardCharsets.UTF_8)));
+        params.put("url", Base64.getEncoder()
+                .encodeToString(shareLink.substring(shareLink.indexOf(CommonCons.HTTPS)).getBytes(StandardCharsets.UTF_8)));
         // 发送 HTTP 请求，调用接口
-        String response = HttpRequest.get(url, Maps.newHashMap(), params).dataOrNull();
+        String response = HttpRequest.get(url, params, Maps.newHashMap()).dataOrNull();
 
         if (StringUtils.isNotEmpty(response)) {
             try {
@@ -72,11 +80,10 @@ public class SubFunctionService {
                         String data = res.getString("data");
                         if (isTiktok) {
                             TiktokVideoInfoDTO videoInfo = JSON.parseObject(data, TiktokVideoInfoDTO.class);
-                            return Result.ok(Collections.singletonList(videoInfo.getUrl()));
+                            return Result.ok(new VideoInfoDTO(videoInfo));
                         }
                         BiliVideoInfoDTO videoInfo = JSON.parseObject(data, BiliVideoInfoDTO.class);
-                        return Result.ok(videoInfo.getList().parallelStream()
-                                .map(BiliVideoItemDTO::getUrl).collect(Collectors.toList()));
+                        return Result.ok(new VideoInfoDTO(videoInfo));
                     }
                 }
 

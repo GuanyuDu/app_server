@@ -33,7 +33,7 @@ public enum FeiShuNotifyTypeEnum {
      */
     INTERACTIVE("interactive");
 
-    public String value;
+    public final String value;
 
     FeiShuNotifyTypeEnum(String value) {
         this.value = value;
