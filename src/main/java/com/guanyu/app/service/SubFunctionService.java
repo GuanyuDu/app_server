@@ -35,10 +35,10 @@ public class SubFunctionService {
     /**
      * 分享链接转换基础链接地址
      */
-    @Value("#{'${third-part.domain}' + '/api/%s/video'}")
-    private String baseUrl;
+    @Value("${third-part.domain}")
+    private String domain;
 
-    @Value("${third-part.app-id}")
+    @Value("${third-part.appid}")
     private String appId;
 
     @Value("${third-part.app-secret}")
@@ -57,7 +57,9 @@ public class SubFunctionService {
         }
         // 判断当前分享链接是抖音还是哔哩哔哩，构建请求链接
         boolean isTiktok = shareLink.contains(CommonCons.DOU_YIN);
+        String baseUrl = domain + "/api/%s/video";
         String url = String.format(baseUrl, isTiktok ? CommonCons.DOU_YIN : CommonCons.BILI_BILI);
+
         Map<String, String> params = new HashMap<>(16);
         params.put("app_id", appId);
         params.put("app_secret", appSecret);

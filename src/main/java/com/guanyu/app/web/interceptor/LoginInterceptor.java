@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 登录逻辑处理拦截其
+ * 登录逻辑处理拦截器
  *
  * @author Guanyu
  */

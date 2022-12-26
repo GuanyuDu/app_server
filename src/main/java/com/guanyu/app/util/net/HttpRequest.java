@@ -20,7 +20,6 @@ import java.util.concurrent.TimeUnit;
 public class HttpRequest {
 
     private static final OkHttpClient CLIENT = new OkHttpClient.Builder()
-            .certificatePinner(new CertificatePinner.Builder().add("api.dududu.top", "").build())
             .callTimeout(5, TimeUnit.SECONDS)
             .connectTimeout(5, TimeUnit.SECONDS)
             .readTimeout(5, TimeUnit.SECONDS).build();

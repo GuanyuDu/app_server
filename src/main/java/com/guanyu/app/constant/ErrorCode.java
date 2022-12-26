@@ -23,6 +23,7 @@ public enum ErrorCode {
      * 业务错误码
      */
     SHARE_LINK_FORMAT_ERROR(2001, "分享链接格式错误"),
+    COMMENTS_NOT_AVAILABLE(2002, "评论暂时不可用"),
 
     /**
      * 服务内部状态码
