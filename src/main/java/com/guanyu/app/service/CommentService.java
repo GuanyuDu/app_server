@@ -2,6 +2,7 @@ package com.guanyu.app.service;
 
 import com.guanyu.app.model.dto.base.PageInfo;
 import com.guanyu.app.model.dto.CommentDTO;
+import com.guanyu.app.model.dto.base.Result;
 
 /**
  * @author Guanyu
@@ -23,7 +24,7 @@ public interface CommentService {
      * @param replyId 回复id
      * @param comment 评论内容
      */
-    void addComment(long replyId, String comment);
+    Result<Void> addComment(long replyId, String comment);
 
     /**
      * 根据 id 删除评论
@@ -31,4 +32,11 @@ public interface CommentService {
      * @param id    评论 id
      */
     void delComment(long id);
+
+    /**
+     * 评论功能是否可用
+     *
+     * @return boolean true 表示可用
+     */
+    boolean commentable();
 }

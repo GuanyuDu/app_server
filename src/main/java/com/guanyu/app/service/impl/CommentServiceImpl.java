@@ -1,14 +1,18 @@
 package com.guanyu.app.service.impl;
 
+import com.guanyu.app.constant.ErrorCode;
 import com.guanyu.app.constant.PageCons;
+import com.guanyu.app.manager.ConfigurationManager;
 import com.guanyu.app.manager.NotificationManager;
 import com.guanyu.app.model.dao.CommentDao;
 import com.guanyu.app.model.dao.UserDao;
 import com.guanyu.app.model.dto.CommentDTO;
 import com.guanyu.app.model.dto.base.PageInfo;
+import com.guanyu.app.model.dto.base.Result;
 import com.guanyu.app.model.miniapp.CommentDO;
 import com.guanyu.app.model.miniapp.UserDO;
 import com.guanyu.app.service.CommentService;
+import com.guanyu.app.util.log.Logs;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +31,12 @@ public class CommentServiceImpl implements CommentService {
 
     @Resource
     private UserDao userDao;
-
     @Resource
     private CommentDao commentDao;
-
     @Resource
     private NotificationManager notificationManager;
+    @Resource
+    private ConfigurationManager configurationManager;
 
 
     @Override
@@ -53,12 +57,19 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void addComment(long replyId, String comment) {
-        // 添加一条新消息
+    public Result<Void> addComment(long replyId, String comment) {
+        // 检查评论是否可用
+        if (!configurationManager.commentable()) {
+            Logs.detail.info("User submission of new comments is rejected. user_id = {}, content = '{}'", 0L, comment);
+            return Result.fail(ErrorCode.COMMENTS_NOT_AVAILABLE);
+        }
+        // TODO 添加一条新消息，用户标识获取
         commentDao.addComment(CommentDO.init(1L, replyId, comment));
-        // 发送通知
+        // TODO 发送通知，如何快速审核新消息？
         notificationManager.feiShuRichTextNotification("新消息通知", "消息内容：" + comment,
                 "详情", "https://api.dududu.top/message?page=1&size=10");
+
+        return Result.ok();
     }
 
     @Override
@@ -67,5 +78,10 @@ public class CommentServiceImpl implements CommentService {
         if (effectLine <= 0) {
             throw new RuntimeException();
         }
+    }
+
+    @Override
+    public boolean commentable() {
+        return configurationManager.commentable();
     }
 }

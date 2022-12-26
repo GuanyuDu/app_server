@@ -51,6 +51,17 @@ public class CommentController {
     }
 
     /**
+     * 检查当前评论功能是否可用
+     *
+     * @return Boolean true 表示可以评论，false 为不可评论
+     */
+    @Operation(summary = "检查评论功能是否可用", description = "获取当前评论功能状态，true 表示可评论")
+    @GetMapping("/commentable")
+    public Result<Boolean> commentable() {
+        return Result.ok(commentService.commentable());
+    }
+
+    /**
      * 创建消息
      *
      * @param content 消息内容
