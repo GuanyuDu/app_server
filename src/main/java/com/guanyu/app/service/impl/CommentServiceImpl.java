@@ -57,16 +57,16 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Result<Void> addComment(long replyId, String comment) {
+    public Result<Void> addComment(long replyId, String content) {
         // 检查评论是否可用
         if (!configurationManager.commentable()) {
-            Logs.detail.info("User submission of new comments is rejected. user_id = {}, content = '{}'", 0L, comment);
+            Logs.detail.info("User submission of new comments is rejected. user_id = {}, content = '{}'", 0L, content);
             return Result.fail(ErrorCode.COMMENTS_NOT_AVAILABLE);
         }
         // TODO 添加一条新消息，用户标识获取
-        commentDao.addComment(CommentDO.init(1L, replyId, comment));
+        commentDao.addComment(CommentDO.init(1L, replyId, content));
         // TODO 发送通知，如何快速审核新消息？
-        notificationManager.feiShuRichTextNotification("新消息通知", "消息内容：" + comment,
+        notificationManager.feiShuRichTextNotification("新消息通知", "消息内容：" + content,
                 "详情", "https://api.dududu.top/message?page=1&size=10");
 
         return Result.ok();

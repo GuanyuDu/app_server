@@ -3,10 +3,10 @@ package com.guanyu.app.model.miniapp;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
-
-import java.time.LocalDateTime;
-import java.util.Date;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 评论表
@@ -34,9 +34,9 @@ public class CommentDO extends BaseDO {
     private Long parentId;
 
     /**
-     * 评论
+     * 评论文本
      */
-    private String comment;
+    private String content;
 
     /**
      * 是否置顶: 1: 置顶, 0: 未置顶
@@ -54,11 +54,11 @@ public class CommentDO extends BaseDO {
     private Integer status;
 
 
-    public static CommentDO init(long userId, long parentId, String comment) {
+    public static CommentDO init(long userId, long parentId, String content) {
         CommentDO message = new CommentDO();
         message.setUserId(userId);
         message.setParentId(parentId);
-        message.setComment(comment);
+        message.setContent(content);
         message.setLikeNum(0);
         message.setTopFlag(0);
         message.setStatus(1);

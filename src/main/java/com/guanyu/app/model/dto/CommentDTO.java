@@ -7,9 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-
 /**
  * 消息传输对象
  *
@@ -33,7 +30,7 @@ public class CommentDTO {
     /**
      * 评论
      */
-    private String comment;
+    private String content;
 
     /**
      * 是否置顶: 1: 置顶, 0: 未置顶
@@ -55,7 +52,7 @@ public class CommentDTO {
         CommentDTO message = new CommentDTO();
         message.setNickname(user.getNickname());
         message.setAvatar(user.getAvatar());
-        message.setComment(commentDO.getComment());
+        message.setContent(commentDO.getContent());
         message.setTopFlag(commentDO.getTopFlag());
         message.setLikeNum(commentDO.getLikeNum());
         message.setCreateTime(TimeFormatHelper.STANDARD.format(commentDO.getCreateTime()));
