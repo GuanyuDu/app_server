@@ -2,10 +2,10 @@ package com.guanyu.app.manager;
 
 import com.guanyu.app.constant.MiniAppUIEnum;
 import com.guanyu.app.model.dao.ConfigurationDao;
-import com.guanyu.app.model.miniapp.ConfigurationDO;
+import com.guanyu.app.model.domain.ConfigurationDO;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.Optional;
 
 /**
@@ -21,7 +21,6 @@ public class ConfigurationManager {
 
     /**
      * 检查评论功能是否可用
-     *
      * @return true 表示可用
      */
     public boolean commentable() {

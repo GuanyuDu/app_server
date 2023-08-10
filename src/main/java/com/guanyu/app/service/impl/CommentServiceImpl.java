@@ -6,25 +6,27 @@ import com.guanyu.app.manager.ConfigurationManager;
 import com.guanyu.app.manager.NotificationManager;
 import com.guanyu.app.model.dao.CommentDao;
 import com.guanyu.app.model.dao.UserDao;
+import com.guanyu.app.model.domain.CommentDO;
+import com.guanyu.app.model.domain.UserDO;
 import com.guanyu.app.model.dto.CommentDTO;
 import com.guanyu.app.model.dto.base.PageInfo;
 import com.guanyu.app.model.dto.base.Result;
-import com.guanyu.app.model.miniapp.CommentDO;
-import com.guanyu.app.model.miniapp.UserDO;
 import com.guanyu.app.service.CommentService;
 import com.guanyu.app.util.log.Logs;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
  * 消息查询
+ *
  * @author Guanyu
  */
-
 @Slf4j
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -46,14 +48,20 @@ public class CommentServiceImpl implements CommentService {
         long offset = (page - 1) * pageSize;
 
         List<CommentDO> messages = commentDao.getComments(offset, pageSize);
-        Long totalCount = commentDao.getCommentCount();
+        Long total = commentDao.getCommentCount();
         // the conversion of DO into DTO
+        List<Long> ids = messages.stream().map(CommentDO::getUserId).distinct().collect(Collectors.toList());
+        List<UserDO> users = userDao.getUserInfoByIds(ids);
+        if (users == null || users.isEmpty()) {
+            throw new RuntimeException();
+        }
+        Map<Long, UserDO> userMap = users.stream().collect(Collectors.toMap(UserDO::getId, Function.identity()));
         List<CommentDTO> result = messages.stream().map(message -> {
-            UserDO userInfo = userDao.getUserInfoById(message.getUserId());
-            return CommentDTO.init(message, userInfo);
+            UserDO userinfo = userMap.get(message.getUserId());
+            return CommentDTO.init(message, userinfo);
         }).collect(Collectors.toList());
 
-        return PageInfo.of(page, totalCount, result);
+        return PageInfo.of(page, total, result);
     }
 
     @Override

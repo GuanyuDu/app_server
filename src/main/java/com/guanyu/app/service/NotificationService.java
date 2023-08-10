@@ -2,9 +2,8 @@ package com.guanyu.app.service;
 
 import com.guanyu.app.manager.NotificationManager;
 import com.guanyu.app.model.dto.base.Result;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * 通知服务

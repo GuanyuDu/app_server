@@ -1,9 +1,9 @@
 package com.guanyu.app.model.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.guanyu.app.model.miniapp.CommentDO;
+import com.guanyu.app.model.domain.CommentDO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import tk.mybatis.mapper.common.BaseMapper;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public interface CommentMapper extends BaseMapper<CommentDO> {
      * @param size {@link Long}     页大小
      * @return CommentDOs           消息集合
      */
-    @Select("select * from comment where status = 1 order by top_flag desc, create_time desc limit ${offset}, ${size}")
+    @Select("select * from `comment` where `status` = 1 order by `top_flag` desc, `create_time` desc limit ${offset}, ${size}")
     List<CommentDO> getComments(@Param("offset") Long offset, @Param("size") Long size);
 
     /**

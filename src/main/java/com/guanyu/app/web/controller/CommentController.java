@@ -8,10 +8,9 @@ import com.guanyu.app.model.dto.base.Result;
 import com.guanyu.app.service.CommentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
 
 /**
  * 小程序消息列表接口
@@ -30,22 +29,21 @@ public class CommentController {
     /**
      * 获取消息列表
      *
-     * @param page  当前页
-     * @param size  页大小
-     * @return      消息对象列表
+     * @param page 当前页
+     * @param size 页大小
+     * @return 消息对象列表
      */
     @Operation(summary = "获取评论列表", description = "根据时间倒序返回用户评论数据，每次默认 10 条")
     @GetMapping("/comment")
     public Result<PageInfo<CommentDTO>> getComments(@RequestParam(name = "page", required = false, defaultValue = "1") long page,
                                                     @RequestParam(name = "size", required = false, defaultValue = "10") long size) {
-        if (page < 1) {
-            return Result.fail(ErrorCode.PARAM_TYPE_ERROR);
-        }
+
+        if (page < 1) return Result.fail(ErrorCode.PARAM_TYPE_ERROR);
         try {
             return Result.ok(commentService.getComments(page, size));
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e.getCause());
         }
         return Result.fail(ErrorCode.UNKNOWN_ERROR);
     }
@@ -69,10 +67,9 @@ public class CommentController {
      */
     @Operation(summary = "创建新评论")
     @PostMapping("/comment")
-    public Result<JSONObject> createComment(@RequestParam(name = "reply_id", required = false, defaultValue = "0") Long replyId,
-                                            @RequestParam String content) {
-        commentService.addComment(replyId, content);
-        return Result.ok();
+    public Result<Void> createComment(@RequestParam(name = "reply_id", required = false, defaultValue = "0") Long replyId,
+                                      @RequestParam String content) {
+        return commentService.addComment(replyId, content);
     }
 
     /**

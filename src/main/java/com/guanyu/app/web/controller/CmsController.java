@@ -4,20 +4,16 @@ import com.alibaba.excel.EasyExcel;
 import com.guanyu.app.constant.ErrorCode;
 import com.guanyu.app.model.dto.UserDTO;
 import com.guanyu.app.model.dto.base.Result;
-import com.guanyu.app.model.miniapp.UserDO;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +35,8 @@ public class CmsController {
             String originalName = file.getOriginalFilename();
             File localFile = new File("F:\\Temp\\" + (StringUtils.isNotEmpty(originalName) ? originalName : "temp_file_name"));
             try (
-                InputStream inputStream = file.getInputStream();
-                FileOutputStream outputStream = new FileOutputStream(localFile)
+                    InputStream inputStream = file.getInputStream();
+                    FileOutputStream outputStream = new FileOutputStream(localFile)
             ) {
                 if (!localFile.exists()) {
                     boolean isCreated = localFile.createNewFile();

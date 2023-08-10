@@ -1,7 +1,7 @@
 package com.guanyu.app.model.dto;
 
-import com.alibaba.excel.annotation.ExcelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /**
  * 用户信息传输对象
@@ -12,9 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 public class UserDTO {
 
-    @ExcelProperty("User_Name")
     private String username;
 
-    @ExcelProperty("Age")
     private String age;
 }

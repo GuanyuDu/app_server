@@ -1,12 +1,12 @@
 package com.guanyu.app.web.controller;
 
-import com.guanyu.app.model.dto.UserDTO;
 import com.guanyu.app.model.dto.base.Result;
 import com.guanyu.app.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 
 /**
  * 用户相关接口
@@ -21,32 +21,48 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @PostMapping("/login")
-    public Result<UserDTO> login(@RequestParam("token") String token) {
-        return userService.login(token);
+    /**
+     * 静默登录
+     *
+     * @param code 微信授权码
+     * @return token 用户登录凭证
+     */
+    @Operation(summary = "静默登录", description = "根据授权 code 进行登录")
+    @GetMapping("/login")
+    public Result<String> login(@RequestParam("code") String code) {
+        return userService.login(code);
     }
 
     /**
-     * 获取用户信息
+     * 更新用户基础信息
      *
-     * @param guid 用户id
-     * @return 操作结果
+     * @return 空
      */
-    @GetMapping("/{guid}/info")
-    public Result<String> getUserInfo(@PathVariable Long guid) {
-        System.out.println("User info id: " + guid);
+    @Operation(summary = "更新用户信息", description = "主要更新用户昵称、头像信息")
+    @PostMapping("/info")
+    public Result<Void> updateUserInfo(@RequestParam("nickname") String nickname,
+                                       @RequestParam("avatar") String avatar) {
+        return userService.updateBasicInfo(nickname, avatar);
+    }
+
+    /**
+     * 获取当前登录用户基础信息
+     *
+     * @return 用户昵称、用户头像（如果存在）
+     */
+    @GetMapping("/info")
+    public Result<String> getUserInfo() {
+        //
         return Result.ok();
     }
 
     /**
-     * 获取用户角色
+     * 获取当前登录用户角色
      *
-     * @param guid 用户id
      * @return 操作结果
      */
-    @GetMapping("/{guid}/role")
-    public Result<String> getUserRole(@PathVariable Long guid) {
-        System.out.println("User role guid: " + guid + ", role: guest");
+    @GetMapping("/role")
+    public Result<String> getUserRole() {
         return Result.ok("guest");
     }
 
@@ -58,7 +74,6 @@ public class UserController {
      */
     @PostMapping("/feedback")
     public Result<Object> createFeedback(@RequestParam String content) {
-
         return Result.ok();
     }
 }

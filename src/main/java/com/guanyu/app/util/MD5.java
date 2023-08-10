@@ -5,9 +5,9 @@ import java.security.MessageDigest;
 public class MD5 {
 
     /**
-     *  MD5加密
+     * 生成 MD5 摘要
      **/
-    public static String md5(String str) {
+    public static String digest(String str) {
         String md5 = null;
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

@@ -1,7 +1,5 @@
 package com.guanyu.app.model.dto.base;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,32 +15,26 @@ public class PageInfo<T> {
     /**
      * current page
      */
-    private long currentPage;
+    private long current;
 
     /**
      * total data number
      */
-    private long totalCount;
+    private long total;
 
     /**
      * current page data
      */
     private List<T> data;
 
-
-    public static <T> PageInfo<T> of(long currentPage, long totalCount, List<T> data) {
-        return new PageInfo<>(currentPage, totalCount, data);
+    public static <T> PageInfo<T> of(long current, long total, List<T> data) {
+        return new PageInfo<>(current, total, data);
     }
 
-    public PageInfo(long currentPage, long totalCount, List<T> data) {
-        this.currentPage = currentPage;
-        this.totalCount = totalCount;
+    public PageInfo(long current, long total, List<T> data) {
+        this.current = current;
+        this.total = total;
         this.data = data;
     }
 
-    public PageInfo(IPage<T> page) {
-        this.currentPage = page.getCurrent();
-        this.totalCount = page.getTotal();
-        this.data = page.getRecords();
-    }
 }

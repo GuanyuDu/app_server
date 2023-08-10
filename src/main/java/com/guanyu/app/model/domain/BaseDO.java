@@ -1,4 +1,4 @@
-package com.guanyu.app.model.miniapp;
+package com.guanyu.app.model.domain;
 
 import lombok.Getter;
 import lombok.Setter;

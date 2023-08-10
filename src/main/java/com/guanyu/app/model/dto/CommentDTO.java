@@ -1,7 +1,7 @@
 package com.guanyu.app.model.dto;
 
-import com.guanyu.app.model.miniapp.CommentDO;
-import com.guanyu.app.model.miniapp.UserDO;
+import com.guanyu.app.model.domain.CommentDO;
+import com.guanyu.app.model.domain.UserDO;
 import com.guanyu.app.util.TimeFormatHelper;
 import lombok.Getter;
 import lombok.Setter;

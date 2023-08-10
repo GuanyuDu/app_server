@@ -1,10 +1,10 @@
 package com.guanyu.app.model.dao;
 
+import com.guanyu.app.model.domain.CommentDO;
 import com.guanyu.app.model.mapper.CommentMapper;
-import com.guanyu.app.model.miniapp.CommentDO;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -53,6 +53,6 @@ public class CommentDao {
      * @return      影响行数
      */
     public int delComment(Long id) {
-        return commentMapper.deleteById(id);
+        return commentMapper.deleteByPrimaryKey(id);
     }
 }

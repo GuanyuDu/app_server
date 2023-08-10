@@ -1,11 +1,10 @@
 package com.guanyu.app.model.dao;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.guanyu.app.model.domain.ConfigurationDO;
 import com.guanyu.app.model.mapper.ConfigurationMapper;
-import com.guanyu.app.model.miniapp.ConfigurationDO;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.Optional;
 
 /**
@@ -27,8 +26,8 @@ public class ConfigurationDao {
      * @return ConfigurationDO 配置信息
      */
     public Optional<ConfigurationDO> getConfigByName(String name) {
-        LambdaQueryWrapper<ConfigurationDO> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(ConfigurationDO::getName, name);
-        return Optional.ofNullable(mapper.selectOne(wrapper));
+        ConfigurationDO configuration = new ConfigurationDO();
+        configuration.setName(name);
+        return Optional.ofNullable(mapper.selectOne(configuration));
     }
 }

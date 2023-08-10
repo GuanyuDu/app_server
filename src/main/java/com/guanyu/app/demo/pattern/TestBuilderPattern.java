@@ -8,9 +8,21 @@ import lombok.ToString;
 @ToString
 public class TestBuilderPattern {
 
-    public final String name;
-    public final transient int age;
-    public final String habit;
+    private final String name;
+    private final transient int age;
+    private final String habit;
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getHabit() {
+        return habit;
+    }
 
     private TestBuilderPattern(String name, int age, String habit) {
         this.name = name;

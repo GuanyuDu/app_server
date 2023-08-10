@@ -1,26 +1,25 @@
-package com.guanyu.app.model.miniapp;
+package com.guanyu.app.model.domain;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 评论表
  *
  * @author Guanyu
  */
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
-@TableName(value = "comment")
+
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Table(name = "comment")
 public class CommentDO extends BaseDO {
 
-    @TableId(type = IdType.AUTO)
+    @Id
+    @GeneratedValue(generator = "JDBC")
     private Long id;
 
     /**

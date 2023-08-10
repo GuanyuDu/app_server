@@ -1,7 +1,7 @@
 package com.guanyu.app.util;
 
 import com.alibaba.fastjson.JSON;
-import com.guanyu.app.model.miniapp.UserDO;
+import com.guanyu.app.model.domain.UserDO;
 import lombok.Getter;
 import org.springframework.util.StringUtils;
 
@@ -18,25 +18,6 @@ public class UserContext {
      * 用户信息
      */
     private static final ThreadLocal<UserInfo> USER_INFO = new ThreadLocal<>();
-
-    /**
-     * 判断当前用户是否已经登录
-     *
-     * @return {@link Boolean} true：已登录，false：未登录
-     */
-    public static boolean isLogin() {
-        return USER_INFO.get() != null;
-    }
-
-    public static String getOpenid() {
-        return "";
-    }
-
-    public static String getNickname() {
-        return "";
-    }
-
-
 
     /**
      * 初始化 UserContext
@@ -64,25 +45,54 @@ public class UserContext {
         return Optional.ofNullable(USER_INFO.get());
     }
 
+    /**
+     * 判断当前用户是否已经登录
+     *
+     * @return {@link Boolean} true：已登录，false：未登录
+     */
+    public static boolean isLogin() {
+        return getUserInfo().isPresent();
+    }
+
+    /**
+     * 获取当前登录用户 openid
+     *
+     * @return 用户 openid，未登录返回空串
+     */
+    public static String getOpenid() {
+        return getUserInfo().map(UserInfo::getOpenid).orElse("");
+    }
+
+    /**
+     * 获取当前登录用户昵称
+     *
+     * @return 用户昵称，未登录返回空串
+     */
+    public static String getNickname() {
+        return getUserInfo().map(UserInfo::getNickname).orElse("");
+    }
+
+
     @Getter
     public static class UserInfo {
+
         private final String nickname;
         private final String avatar;
         private final String openid;
-        private final String unionId;
+        private final String sessionKey;
 
-        public UserInfo(UserDO user) {
+        public UserInfo(UserDO user, String sessionKey) {
             this.nickname = user.getNickname();
             this.avatar = user.getAvatar();
-            this.openid = user.getOpenId();
-            this.unionId = "";
+            this.openid = user.getOpenid();
+            this.sessionKey = sessionKey;
         }
 
-        public UserInfo(String nickname, String avatar, String openid, String unionId) {
+        public UserInfo(String nickname, String avatar, String openid, String sessionKey) {
             this.nickname = nickname;
             this.avatar = avatar;
             this.openid = openid;
-            this.unionId = unionId;
+            this.sessionKey = sessionKey;
         }
     }
 }

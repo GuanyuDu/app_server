@@ -1,24 +1,24 @@
-package com.guanyu.app.model.miniapp;
+package com.guanyu.app.model.domain;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 配置实体
  *
  * @author Guanyu
  */
-@Getter
-@Setter
-@ToString
-@TableName(value = "configuration")
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Table(name = "configuration")
 public class ConfigurationDO extends BaseDO {
 
-    @TableId(type = IdType.AUTO)
+    @Id
+    @GeneratedValue(generator = "JDBC")
     private Long id;
 
     /**
